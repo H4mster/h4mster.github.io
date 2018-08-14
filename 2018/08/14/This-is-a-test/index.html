@@ -12,6 +12,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -53,16 +64,16 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/head_icon.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/head_icon.jpg?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/head_icon.jpg?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="/images/head_icon.jpg?v=5.1.4" color="#222">
 
 
 
@@ -87,7 +98,7 @@
 <meta property="og:description" content="This is a test image.行内形式：我的博客 参考形式：[我的博客][1]，有一个很好的平台-[简书][2] [1]:https://kevinpu.github.io/ [2]:http://www.jianshu.com/ 自动链接：我的博客地址https://kevinpu.github.io/ 作者：KevinPu链接：https://www.jianshu.com/p/5">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://h4mster.github.io/images/test.png">
-<meta property="og:updated_time" content="2018-08-14T08:52:59.245Z">
+<meta property="og:updated_time" content="2018-08-14T09:43:49.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="This is a test.">
 <meta name="twitter:description" content="This is a test image.行内形式：我的博客 参考形式：[我的博客][1]，有一个很好的平台-[简书][2] [1]:https://kevinpu.github.io/ [2]:http://www.jianshu.com/ 自动链接：我的博客地址https://kevinpu.github.io/ 作者：KevinPu链接：https://www.jianshu.com/p/5">
@@ -122,6 +133,7 @@
 
 
   <link rel="canonical" href="http://h4mster.github.io/2018/08/14/This-is-a-test/"/>
+
 
 
 
@@ -269,7 +281,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="H4mster">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/head_icon.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -326,6 +338,25 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  104
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -350,11 +381,38 @@
     
     
     
+	
+	
+	  <div>
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+	------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
 
+	  </div>
+	
+	
     
 
     
 
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    H4mster
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://h4mster.github.io/2018/08/14/This-is-a-test/" title="This is a test.">http://h4mster.github.io/2018/08/14/This-is-a-test/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
@@ -425,6 +483,10 @@
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head_icon.jpg"
+                alt="H4mster" />
             
               <p class="site-author-name" itemprop="name">H4mster</p>
               <p class="site-description motion-element" itemprop="description">H4mster's blog</p>
@@ -538,6 +600,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">H4mster</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">104</span>
   
 </div>
 
