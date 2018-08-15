@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="H4mster&#39;s blog">
 <meta property="og:description" content="0x00: 序我不想继续废物下去了，好好学吧XD 0x01:web2F12直接得到flag。 0x02:文件上传测试上传一个jpg文件，抓包后在请求信息中将文件后缀改为php，用bp的Repeater模块发送，在返回的请求信息中便可以得到flag。或是上传一个php文件，抓包后在请求信息中将Content-Type改为php，用bp的Repeater模块发送，在返回的请求信息中也可得到flag。这">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-14T12:48:51.327Z">
+<meta property="og:updated_time" content="2018-08-15T15:55:22.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BUGKU_WEB">
 <meta name="twitter:description" content="0x00: 序我不想继续废物下去了，好好学吧XD 0x01:web2F12直接得到flag。 0x02:文件上传测试上传一个jpg文件，抓包后在请求信息中将文件后缀改为php，用bp的Repeater模块发送，在返回的请求信息中便可以得到flag。或是上传一个php文件，抓包后在请求信息中将Content-Type改为php，用bp的Repeater模块发送，在返回的请求信息中也可得到flag。这">
@@ -346,7 +346,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  391
+                  444
                 </span>
               
 
@@ -379,8 +379,8 @@
 <h2 id="0x05-web基础-POST"><a href="#0x05-web基础-POST" class="headerlink" title="0x05:web基础$_POST"></a>0x05:web基础$_POST</h2><p>传入POST的方式有很多，可以用hackbar也可以用bp。</p>
 <h2 id="0x06-矛盾"><a href="#0x06-矛盾" class="headerlink" title="0x06:矛盾"></a>0x06:矛盾</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$num=$_GET[<span class="string">'num'</span>];</span><br><span class="line"><span class="keyword">if</span>(!is_numeric($num))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> $num;</span><br><span class="line">	<span class="keyword">if</span>($num==<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'flag&#123;**********&#125;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p> 首先外层的if(!is_numeric($num))要求num不为数字，而内层的if($num==1)又要求num的值为1，我们利用弱类型比较即可绕过外层条件，传入?num=1string，这里的string可以替换为任意字符串，1string开始时会被当成字符串处理，从而绕过is_numeric，而到了下面判断是否为1时，变量$num会进行隐式转换，被当做一个整型处理，这也被称为弱类型。</p>
-<h2 id="0x07-web3"><a href="#0x07-web3" class="headerlink" title="0x07:web3"></a>0x07:web3</h2><p> 直接打开后发现有很多的alert，遂关闭，使用view-source:url的方式查看源码，发现一串ASCII码字符，转义后得到flag</p>
-<h2 id="0x08-sql注入"><a href="#0x08-sql注入" class="headerlink" title="0x08:sql注入"></a>0x08:sql注入</h2>
+<h2 id="0x07-web3"><a href="#0x07-web3" class="headerlink" title="0x07:web3"></a>0x07:web3</h2><p> 直接打开后发现有很多的alert，遂关闭，使用view-source:url的方式查看源码，发现一串ASCII码字符，转义后得到flag<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">string = input()</span><br><span class="line">temp = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ch <span class="keyword">in</span> string:</span><br><span class="line">    <span class="keyword">if</span> ch.isdigit():</span><br><span class="line">        temp *= <span class="number">10</span></span><br><span class="line">        temp += int(ch)</span><br><span class="line">    <span class="keyword">elif</span> temp:</span><br><span class="line">        print(chr(temp), end=<span class="string">''</span>)</span><br><span class="line">        temp = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="0x08-sql注入"><a href="#0x08-sql注入" class="headerlink" title="0x08:sql注入"></a>0x08:sql注入</h2><h6 id="bugku的题突然进不去了！写不了了！明天再看看SAAAAAAAAAAAAAAAAAAAAAAAAD"><a href="#bugku的题突然进不去了！写不了了！明天再看看SAAAAAAAAAAAAAAAAAAAAAAAAD" class="headerlink" title="bugku的题突然进不去了！写不了了！明天再看看SAAAAAAAAAAAAAAAAAAAAAAAAD"></a>bugku的题突然进不去了！写不了了！明天再看看SAAAAAAAAAAAAAAAAAAAAAAAAD</h6><meta http-equiv="refresh" content="2">
       
     </div>
     
@@ -528,6 +528,14 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
+                    <a href="http://she1don.cn/" title="Sheldon" target="_blank">Sheldon</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.codemonster.cn/" title="Xishir" target="_blank">Xishir</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
                     <a href="http://anonym1ty.cn/" title="豆浆油条" target="_blank">豆浆油条</a>
                   </li>
                 
@@ -558,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00: 序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-web2"><span class="nav-number">2.</span> <span class="nav-text">0x01:web2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-文件上传测试"><span class="nav-number">3.</span> <span class="nav-text">0x02:文件上传测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-计算器"><span class="nav-number">4.</span> <span class="nav-text">0x03:计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-web基础-GET"><span class="nav-number">5.</span> <span class="nav-text">0x04:web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-web基础-POST"><span class="nav-number">6.</span> <span class="nav-text">0x05:web基础$_POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-矛盾"><span class="nav-number">7.</span> <span class="nav-text">0x06:矛盾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-web3"><span class="nav-number">8.</span> <span class="nav-text">0x07:web3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08-sql注入"><span class="nav-number">9.</span> <span class="nav-text">0x08:sql注入</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00: 序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-web2"><span class="nav-number">2.</span> <span class="nav-text">0x01:web2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-文件上传测试"><span class="nav-number">3.</span> <span class="nav-text">0x02:文件上传测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-计算器"><span class="nav-number">4.</span> <span class="nav-text">0x03:计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-web基础-GET"><span class="nav-number">5.</span> <span class="nav-text">0x04:web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-web基础-POST"><span class="nav-number">6.</span> <span class="nav-text">0x05:web基础$_POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-矛盾"><span class="nav-number">7.</span> <span class="nav-text">0x06:矛盾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-web3"><span class="nav-number">8.</span> <span class="nav-text">0x07:web3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08-sql注入"><span class="nav-number">9.</span> <span class="nav-text">0x08:sql注入</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#bugku的题突然进不去了！写不了了！明天再看看SAAAAAAAAAAAAAAAAAAAAAAAAD"><span class="nav-number">9.0.0.0.1.</span> <span class="nav-text">bugku的题突然进不去了！写不了了！明天再看看SAAAAAAAAAAAAAAAAAAAAAAAAD</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -592,7 +600,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">391</span>
+    <span title="Site words total count">444</span>
   
 </div>
 
