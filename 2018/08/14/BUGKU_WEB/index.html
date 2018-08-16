@@ -79,7 +79,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="WEB," />
 
 
 
@@ -91,16 +91,19 @@
 
 
 <meta name="description" content="0x00: 序我不想继续废物下去了，好好学吧XD 0x01:web2F12直接得到flag。 0x02:文件上传测试上传一个jpg文件，抓包后在请求信息中将文件后缀改为php，用bp的Repeater模块发送，在返回的请求信息中便可以得到flag。或是上传一个php文件，抓包后在请求信息中将Content-Type改为php，用bp的Repeater模块发送，在返回的请求信息中也可得到flag。这">
+<meta name="keywords" content="WEB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BUGKU_WEB">
 <meta property="og:url" content="http://h4mster.github.io/2018/08/14/BUGKU_WEB/index.html">
 <meta property="og:site_name" content="H4mster&#39;s blog">
 <meta property="og:description" content="0x00: 序我不想继续废物下去了，好好学吧XD 0x01:web2F12直接得到flag。 0x02:文件上传测试上传一个jpg文件，抓包后在请求信息中将文件后缀改为php，用bp的Repeater模块发送，在返回的请求信息中便可以得到flag。或是上传一个php文件，抓包后在请求信息中将Content-Type改为php，用bp的Repeater模块发送，在返回的请求信息中也可得到flag。这">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-15T15:59:46.741Z">
+<meta property="og:image" content="http://h4mster.github.io/2018/08/14/BUGKU_WEB/BUGKU_WEB/0x08_1.png">
+<meta property="og:updated_time" content="2018-08-16T16:25:52.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BUGKU_WEB">
 <meta name="twitter:description" content="0x00: 序我不想继续废物下去了，好好学吧XD 0x01:web2F12直接得到flag。 0x02:文件上传测试上传一个jpg文件，抓包后在请求信息中将文件后缀改为php，用bp的Repeater模块发送，在返回的请求信息中便可以得到flag。或是上传一个php文件，抓包后在请求信息中将Content-Type改为php，用bp的Repeater模块发送，在返回的请求信息中也可得到flag。这">
+<meta name="twitter:image" content="http://h4mster.github.io/2018/08/14/BUGKU_WEB/BUGKU_WEB/0x08_1.png">
 
 
 
@@ -314,6 +317,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -346,7 +371,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  446
+                  1,146
                 </span>
               
 
@@ -379,8 +404,23 @@
 <h2 id="0x05-web基础-POST"><a href="#0x05-web基础-POST" class="headerlink" title="0x05:web基础$_POST"></a>0x05:web基础$_POST</h2><p>传入POST的方式有很多，可以用hackbar也可以用bp。</p>
 <h2 id="0x06-矛盾"><a href="#0x06-矛盾" class="headerlink" title="0x06:矛盾"></a>0x06:矛盾</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$num=$_GET[<span class="string">'num'</span>];</span><br><span class="line"><span class="keyword">if</span>(!is_numeric($num))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> $num;</span><br><span class="line">	<span class="keyword">if</span>($num==<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'flag&#123;**********&#125;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p> 首先外层的if(!is_numeric($num))要求num不为数字，而内层的if($num==1)又要求num的值为1，我们利用弱类型比较即可绕过外层条件，传入?num=1string，这里的string可以替换为任意字符串，1string开始时会被当成字符串处理，从而绕过is_numeric，而到了下面判断是否为1时，变量$num会进行隐式转换，被当做一个整型处理，这也被称为弱类型。</p>
-<h2 id="0x07-web3"><a href="#0x07-web3" class="headerlink" title="0x07:web3"></a>0x07:web3</h2><p> 直接打开后发现有很多的alert，遂关闭，使用view-source:url的方式查看源码，发现一串ASCII码字符，转义后得到flag<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">string = input()</span><br><span class="line">temp = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ch <span class="keyword">in</span> string:</span><br><span class="line">    <span class="keyword">if</span> ch.isdigit():</span><br><span class="line">        temp *= <span class="number">10</span></span><br><span class="line">        temp += int(ch)</span><br><span class="line">    <span class="keyword">elif</span> temp:</span><br><span class="line">        print(chr(temp), end=<span class="string">''</span>)</span><br><span class="line">        temp = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="0x08-sql注入"><a href="#0x08-sql注入" class="headerlink" title="0x08:sql注入"></a>0x08:sql注入</h2><p>bugku的题暂时突然进不去了！写不了了！明天再看看SAAAAAAAAAAAAAAAAAAAAAAAAD</p>
+<h2 id="0x07-web3"><a href="#0x07-web3" class="headerlink" title="0x07:web3"></a>0x07:web3</h2><p> 直接打开后发现有很多的alert，遂关闭，使用view-source:url的方式查看源码，发现一串ASCII码字符，转义后得到flag。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">string = input()</span><br><span class="line">temp = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ch <span class="keyword">in</span> string:</span><br><span class="line">    <span class="keyword">if</span> ch.isdigit():</span><br><span class="line">        temp *= <span class="number">10</span></span><br><span class="line">        temp += int(ch)</span><br><span class="line">    <span class="keyword">elif</span> temp:</span><br><span class="line">        print(chr(temp), end=<span class="string">''</span>)</span><br><span class="line">        temp = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="0x08-sql注入"><a href="#0x08-sql注入" class="headerlink" title="0x08:sql注入"></a>0x08:sql注入</h2><p>传入id=1’后仍然显示正常，应该是”‘“被转义了，遂尝试宽字节注入，传入id=1%df’后成功报错，那么就可以提取数据库了。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1%df UNION <span class="keyword">SELECT</span> schema_name,<span class="literal">null</span> <span class="keyword">FROM</span> information_schema.schemata %<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="./BUGKU_WEB/0x08_1.png" alt=""><br>flag应该就在sql5这个库里了。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1%df UNION <span class="keyword">SELECT</span> <span class="keyword">string</span>,<span class="keyword">string</span> <span class="keyword">FROM</span> sql5.key %<span class="number">23</span></span><br></pre></td></tr></table></figure></p>
+<p>得到flag。<br>PS:题目挂了。</p>
+<h2 id="0x09-域名解析"><a href="#0x09-域名解析" class="headerlink" title="0x09:域名解析"></a>0x09:域名解析</h2><p>在C:\windows\system32\drivers\etc目录下编辑host，添加一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">120.24.86.145 flag.bugku.com</span><br></pre></td></tr></table></figure></p>
+<p>打开flag.bugku.com即可获得flag。</p>
+<h2 id="0x0A-SQL注入1"><a href="#0x0A-SQL注入1" class="headerlink" title="0x0A:SQL注入1"></a>0x0A:SQL注入1</h2><p>题目挂了</p>
+<h2 id="0x0B-你必须让他停下"><a href="#0x0B-你必须让他停下" class="headerlink" title="0x0B:你必须让他停下"></a>0x0B:你必须让他停下</h2><p>进入题目链接后发现它一直在自己刷新，于是view-source，原来有个js一直在让页面刷新，并且有个a标签里有一句”flag is here~”，与是一直手动刷新view-source:url就能得到flag。</p>
+<h2 id="0x0C-本地包含"><a href="#0x0C-本地包含" class="headerlink" title="0x0C:本地包含"></a>0x0C:本地包含</h2><p>进入题目链接后直接给出源码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span> <span class="string">"flag.php"</span>;</span><br><span class="line">    $a = @$_REQUEST[<span class="string">'hello'</span>];</span><br><span class="line">    <span class="keyword">eval</span>( <span class="string">"var_dump($a);"</span>);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>分析一下源码，$_REQUEST在默认情况下是包含了$_GET、$_POST以及$_COOKIE的数组，eval函数会将字符串参数当做PHP代码来执行，函数原语法为eval(string code_str)。<br>那么题目的意思就显而易见了，就是让我们读取flag.php的内容，于是我们使用file()来读取flag.php的内容，file()的作用是把整个文件读入一个数组中。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload: ?hello=file(<span class="string">'./flag.php'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x0D-变量1"><a href="#0x0D-变量1" class="headerlink" title="0x0D:变量1"></a>0x0D:变量1</h2><p>进入题目链接后直接给出源码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">include</span> <span class="string">"flag1.php"</span>;</span><br><span class="line">    highlight_file(<span class="keyword">__file__</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'args'</span>])) &#123;</span><br><span class="line">        $args = $_GET[<span class="string">'args'</span>];</span><br><span class="line">        <span class="keyword">if</span>(!preg_match(<span class="string">"/^\w+$/"</span>,$args))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">"args error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">"var_dump($$args);"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>正则表达式中的\w只能够匹配字母、数字、下划线、或汉字（实际上还包含了希腊字母，俄文的字母等）。<br>我们传入的字符串str在eval那里会变成$str，也就是说我们可以查询某一个变量的值，于是传入字符串’GLOBALS’,$GLOBALS是个超全局变量组，包含了全部变量，每一个变量为一个元素，键名对应变量名，值对应变量的内容。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload: GLOBALS</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x0E-web5"><a href="#0x0E-web5" class="headerlink" title="0x0E web5"></a>0x0E web5</h2><p>F12查看源码，发现有一串只有()+[]!六种字符组成的字符串，从而判断出这是JSFUCK,放入控制台直接运行得到flag。</p>
+<h2 id="0x0F-头等舱"><a href="#0x0F-头等舱" class="headerlink" title="0x0F 头等舱"></a>0x0F 头等舱</h2><p>F12看源码什么有用的信息都没有，根据题目名称flag应该在响应头里，于是用bp抓包，得到flag。</p>
+<h2 id="0x10-网站被黑"><a href="#0x10-网站被黑" class="headerlink" title="0x10 网站被黑"></a>0x10 网站被黑</h2><p>不会</p>
+<h2 id="0x11-web4"><a href="#0x11-web4" class="headerlink" title="0x11 web4"></a>0x11 web4</h2><p>题目提示”看看源代码？”然后我就看了一下源代码，发现一堆url编码，p1+’%35%34%61%61%32’+p2拼在一起解码，得到如下代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkSubmit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a=document.getElementById(<span class="string">"password"</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"undefined"</span>!=typeof a) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">"67d709b2b54aa2aa648cf6e87a7114f1"</span>==a.value) <span class="keyword">return</span>!<span class="number">0</span>;</span><br><span class="line">        alert(<span class="string">"Error"</span>);</span><br><span class="line">        a.focus();</span><br><span class="line">        <span class="keyword">return</span>!<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">document.getElementById(<span class="string">"levelQuest"</span>).onsubmit=checkSubmit;</span><br></pre></td></tr></table></figure></p>
+<p>于是输入67d709b2b54aa2aa648cf6e87a7114f1即可得到flag</p>
 <!-- <meta http-equiv="refresh" content="2"> -->
       
     </div>
@@ -397,6 +437,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WEB/" rel="tag"><i class="fa fa-tag"></i> WEB</a>
+          
+        </div>
       
 
       
@@ -487,7 +533,25 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -567,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00: 序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-web2"><span class="nav-number">2.</span> <span class="nav-text">0x01:web2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-文件上传测试"><span class="nav-number">3.</span> <span class="nav-text">0x02:文件上传测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-计算器"><span class="nav-number">4.</span> <span class="nav-text">0x03:计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-web基础-GET"><span class="nav-number">5.</span> <span class="nav-text">0x04:web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-web基础-POST"><span class="nav-number">6.</span> <span class="nav-text">0x05:web基础$_POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-矛盾"><span class="nav-number">7.</span> <span class="nav-text">0x06:矛盾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-web3"><span class="nav-number">8.</span> <span class="nav-text">0x07:web3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08-sql注入"><span class="nav-number">9.</span> <span class="nav-text">0x08:sql注入</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00: 序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-web2"><span class="nav-number">2.</span> <span class="nav-text">0x01:web2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-文件上传测试"><span class="nav-number">3.</span> <span class="nav-text">0x02:文件上传测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-计算器"><span class="nav-number">4.</span> <span class="nav-text">0x03:计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-web基础-GET"><span class="nav-number">5.</span> <span class="nav-text">0x04:web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-web基础-POST"><span class="nav-number">6.</span> <span class="nav-text">0x05:web基础$_POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-矛盾"><span class="nav-number">7.</span> <span class="nav-text">0x06:矛盾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-web3"><span class="nav-number">8.</span> <span class="nav-text">0x07:web3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08-sql注入"><span class="nav-number">9.</span> <span class="nav-text">0x08:sql注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x09-域名解析"><span class="nav-number">10.</span> <span class="nav-text">0x09:域名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0A-SQL注入1"><span class="nav-number">11.</span> <span class="nav-text">0x0A:SQL注入1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0B-你必须让他停下"><span class="nav-number">12.</span> <span class="nav-text">0x0B:你必须让他停下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0C-本地包含"><span class="nav-number">13.</span> <span class="nav-text">0x0C:本地包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0D-变量1"><span class="nav-number">14.</span> <span class="nav-text">0x0D:变量1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0E-web5"><span class="nav-number">15.</span> <span class="nav-text">0x0E web5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0F-头等舱"><span class="nav-number">16.</span> <span class="nav-text">0x0F 头等舱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x10-网站被黑"><span class="nav-number">17.</span> <span class="nav-text">0x10 网站被黑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x11-web4"><span class="nav-number">18.</span> <span class="nav-text">0x11 web4</span></a></li></ol></div>
             
 
           </div>
@@ -601,7 +665,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">446</span>
+    <span title="Site words total count">1.1k</span>
   
 </div>
 
