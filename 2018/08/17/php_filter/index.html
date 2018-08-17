@@ -79,7 +79,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="WEB," />
 
 
 
@@ -90,16 +90,18 @@
 
 
 
-<meta name="description" content="我 莫得感情">
-<meta property="og:type" content="website">
-<meta property="og:title" content="H4mster&#39;s blog">
-<meta property="og:url" content="http://h4mster.github.io/archives/2018/08/index.html">
+<meta name="description" content="0x00 序最近遇到了好几次关于php伪协议，所以系统地整理一下知识点 0x01 目录php伪协议，事实上是其支持的协议与封装协议,支持的种类共有十二种   file://—访问本地文件系统  http://—访问 HTTP(s)网址  ftp://—访问 FTP(s) URLs  php://—访问各个输入/输出流（I/O streams）  zlib://—压缩流  data://—数据（RF">
+<meta name="keywords" content="WEB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php伪协议">
+<meta property="og:url" content="http://h4mster.github.io/2018/08/17/php_filter/index.html">
 <meta property="og:site_name" content="H4mster&#39;s blog">
-<meta property="og:description" content="我 莫得感情">
+<meta property="og:description" content="0x00 序最近遇到了好几次关于php伪协议，所以系统地整理一下知识点 0x01 目录php伪协议，事实上是其支持的协议与封装协议,支持的种类共有十二种   file://—访问本地文件系统  http://—访问 HTTP(s)网址  ftp://—访问 FTP(s) URLs  php://—访问各个输入/输出流（I/O streams）  zlib://—压缩流  data://—数据（RF">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-17T09:44:33.592Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="H4mster&#39;s blog">
-<meta name="twitter:description" content="我 莫得感情">
+<meta name="twitter:title" content="php伪协议">
+<meta name="twitter:description" content="0x00 序最近遇到了好几次关于php伪协议，所以系统地整理一下知识点 0x01 目录php伪协议，事实上是其支持的协议与封装协议,支持的种类共有十二种   file://—访问本地文件系统  http://—访问 HTTP(s)网址  ftp://—访问 FTP(s) URLs  php://—访问各个输入/输出流（I/O streams）  zlib://—压缩流  data://—数据（RF">
 
 
 
@@ -129,14 +131,14 @@
 
 
 
-  <link rel="canonical" href="http://h4mster.github.io/archives/2018/08/"/>
+  <link rel="canonical" href="http://h4mster.github.io/2018/08/17/php_filter/"/>
 
 
 
 
 
 
-  <title>Archive | H4mster's blog</title>
+  <title>php伪协议 | H4mster's blog</title>
   
 
 
@@ -155,7 +157,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,111 +261,222 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 2 posts in total. Keep on posting.
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://h4mster.github.io/2018/08/17/php_filter/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="H4mster">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H4mster's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/08/17/php_filter/" itemprop="url">
-              
-                <span itemprop="name">php伪协议</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">php伪协议</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-17T16:52:00+08:00"
-              content="2018-08-17" >
-          08-17
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-17T16:52:00+08:00">
+                2018-08-17
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/17/php_filter/" class="leancloud_visitors" data-flag-title="php伪协议">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  348
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/14/BUGKU_WEB/" itemprop="url">
-              
-                <span itemprop="name">BUGKU_WEB</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T14:23:00+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h4 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00 序"></a>0x00 序</h4><p>最近遇到了好几次关于php伪协议，所以系统地整理一下知识点</p>
+<h4 id="0x01-目录"><a href="#0x01-目录" class="headerlink" title="0x01 目录"></a>0x01 目录</h4><p>php伪协议，事实上是其支持的协议与封装协议,支持的种类共有十二种</p>
+<hr>
+<ul>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.file.php" target="_blank" rel="noopener">file://</a>—访问本地文件系统 </li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.http.php" target="_blank" rel="noopener">http://</a>—访问 HTTP(s)网址 </li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.ftp.php" target="_blank" rel="noopener">ftp://</a>—访问 FTP(s) URLs </li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.php.php" target="_blank" rel="noopener">php://</a>—访问各个输入/输出流（I/O streams） </li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.compression.php" target="_blank" rel="noopener">zlib://</a>—压缩流 </li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.data.php" target="_blank" rel="noopener">data://</a>—数据（RFC 2397） </li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.glob.php" target="_blank" rel="noopener">glob://</a>—查找匹配的文件路径模式 </li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.phar.php" target="_blank" rel="noopener">phar://</a>—php归档</li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.ssh2.php" target="_blank" rel="noopener">ssh2</a>—Secure Shell 2</li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.rar.php" target="_blank" rel="noopener">rar://</a>—RAR</li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.audio.php" target="_blank" rel="noopener">ogg://</a>—音频流</li>
+<li><a href="http://cn2.php.net/manual/zh/wrappers.expect.php" target="_blank" rel="noopener">expect://</a>—处理交互式的流</li>
+</ul>
+<hr>
+<h3 id="php"><a href="#php" class="headerlink" title="php://"></a>php://</h3><p>php提供了一些杂项I/O流，允许访问php的I/O流、标准I/O和错误描述符，内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。</p>
+<p>php://stdin、php://stdout和php://stderr允许直接访问php进程相应的I/O流。数据流引用了复制的文件描述符，所以如果你打开php://stdin并在之后关了它，仅仅是关闭了复制品，真正被引用的STDIN并不受影响。推荐简单使用常量STDIN、STDOUT和STDERR来代替手工打开的这些封装器。</p>
+<p>php://stdin是只读的，php://stdout 和 php://stderr 是只写的。<br>下面举一些例子。</p>
+<h2 id="php-stdin"><a href="#php-stdin" class="headerlink" title="php://stdin"></a>php://stdin</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">while</span>($line = fopen(<span class="string">'php://stdin'</span>, <span class="string">'r'</span>)) &#123;</span><br><span class="line">		<span class="comment">//open our file pointer to read from stdin</span></span><br><span class="line">		<span class="keyword">echo</span> <span class="string">'1'</span>.$line.<span class="string">"\n"</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">'2'</span>.fgets($line);</span><br><span class="line">	&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<meta http-equiv="refresh" content="2">
+      
     </div>
+    
+    
+    
+	
+	
+	
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WEB/" rel="tag"><i class="fa fa-tag"></i> WEB</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/14/BUGKU_WEB/" rel="next" title="BUGKU_WEB">
+                <i class="fa fa-chevron-left"></i> BUGKU_WEB
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -371,6 +484,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -391,8 +508,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -510,6 +636,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00 序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x01-目录"><span class="nav-number">2.</span> <span class="nav-text">0x01 目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php"><span class="nav-number"></span> <span class="nav-text">php://</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php-stdin"><span class="nav-number"></span> <span class="nav-text">php://stdin</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -659,6 +801,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
