@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://h4mster.github.io/2018/08/17/php-agreement/php_agreement/php_stdin.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/08/17/php-agreement/php_agreement/php_stdout.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/08/17/php-agreement/php_agreement/php_stderr.png">
-<meta property="og:updated_time" content="2018-08-17T14:49:54.472Z">
+<meta property="og:updated_time" content="2018-08-17T14:52:08.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php伪协议">
 <meta name="twitter:description" content="title: php伪协议author: H4mstertags: [WEB]categories: [CTF] date: 2018-08-17 16:52:000x00 序最近遇到了好几次关于php伪协议，所以系统地整理一下知识点 0x01 导航php伪协议，事实上是其支持的协议与封装协议,支持的种类共有十二种   file://—访问本地文件系统  http://—访问 HTTP(s)网址">
@@ -398,13 +398,13 @@
 <p>php://stdin、php://stdout和php://stderr允许直接访问php进程相应的I/O流。数据流引用了复制的文件描述符，所以如果你打开php://stdin并在之后关了它，仅仅是关闭了复制品，真正被引用的STDIN并不受影响。推荐简单使用常量STDIN、STDOUT和STDERR来代替手工打开的这些封装器。</p>
 <p>php://stdin是只读的，php://stdout 和 php://stderr 是只写的。<br>下面举一些例子。</p>
 <h4 id="php-stdin"><a href="#php-stdin" class="headerlink" title="php://stdin"></a>php://stdin</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">while</span>($line = fopen(<span class="string">'php://stdin'</span>, <span class="string">'r'</span>)) &#123;</span><br><span class="line">		<span class="comment">//open our file pointer to read from stdin</span></span><br><span class="line">		<span class="keyword">echo</span> <span class="string">'1'</span>.$line.<span class="string">"\n"</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">'2'</span>.fgets($line);</span><br><span class="line">	&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/08/17/php-agreement/./php_agreement/php_stdin.png" alt=""></p>
+<p><img src="/2018/08/17/php-agreement/php_agreement/php_stdin.png" alt=""></p>
 <p>可以看到打开了一个文件指针进行读取</p>
 <h4 id="php-stdout"><a href="#php-stdout" class="headerlink" title="php://stdout"></a>php://stdout</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	$fd = fopen(<span class="string">'php://stdout'</span>, <span class="string">'w'</span>);</span><br><span class="line">	<span class="keyword">if</span> ($fd) &#123;</span><br><span class="line">		<span class="keyword">echo</span> $fd.<span class="string">"\n"</span>;</span><br><span class="line">		fwrite($fd, <span class="string">"This is a test."</span>);</span><br><span class="line">		fwrite($fd, <span class="string">"\n"</span>);</span><br><span class="line">		fclose($fd);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2018/08/17/php-agreement/./php_agreement/php_stdout.png" alt=""></p>
+<p><img src="/2018/08/17/php-agreement/php_agreement/php_stdout.png" alt=""></p>
 <p>可以看到打开了一个文件指针进行写入</p>
 <h4 id="php-stderr"><a href="#php-stderr" class="headerlink" title="php:stderr"></a>php:stderr</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	$stderr = fopen(<span class="string">'php://stderr'</span>, <span class="string">'w'</span>);</span><br><span class="line">	<span class="keyword">echo</span> $stderr.<span class="string">"\n"</span>;</span><br><span class="line">	fwrite($stderr, <span class="string">"This is a test for stderr."</span>);</span><br><span class="line">	fclose($stderr);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2018/08/17/php-agreement/./php_agreement/php_stderr.png" alt=""></p>
+<p><img src="/2018/08/17/php-agreement/php_agreement/php_stderr.png" alt=""></p>
 <p>可以看到打开了一个文件制作进行写入</p>
 <h3 id="php-input"><a href="#php-input" class="headerlink" title="php://input"></a>php://input</h3><p>php://input是一个可以访问请求的原始数据的只读流。因为它不依赖于特定的php.ini指令。<br><strong>注:enctype=”multipart/form-data”的时候php://input是无效的</strong></p>
 <!--<meta http-equiv="refresh" content="2">-->
