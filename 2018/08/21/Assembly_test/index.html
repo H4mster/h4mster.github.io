@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  8KB也就是8*1024Byte，所以宽度为8*1024=8192 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192bit">
+<meta name="description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  1个CPU的寻址能力为8KB，8KB=8*1024Byte，也就是8192个存储单元，8192为2^13，所以地址总线的宽度为13 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Assembly_test">
 <meta property="og:url" content="http://h4mster.github.io/2018/08/21/Assembly_test/index.html">
 <meta property="og:site_name" content="H4mster&#39;s blog">
-<meta property="og:description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  8KB也就是8*1024Byte，所以宽度为8*1024=8192 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192bit">
+<meta property="og:description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  1个CPU的寻址能力为8KB，8KB=8*1024Byte，也就是8192个存储单元，8192为2^13，所以地址总线的宽度为13 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/1.1.png">
-<meta property="og:updated_time" content="2018-08-21T14:07:36.019Z">
+<meta property="og:updated_time" content="2018-08-21T14:36:12.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly_test">
-<meta name="twitter:description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  8KB也就是8*1024Byte，所以宽度为8*1024=8192 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192bit">
+<meta name="twitter:description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  1个CPU的寻址能力为8KB，8KB=8*1024Byte，也就是8192个存储单元，8192为2^13，所以地址总线的宽度为13 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192">
 <meta name="twitter:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/1.1.png">
 
 
@@ -348,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  83
+                  213
                 </span>
               
 
@@ -376,10 +376,14 @@
         <h2 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00:序"></a>0x00:序</h2><p>08/21/2018 开始学习汇编语言<br>有机会的话会上传一些笔记和思维导图</p>
 <h2 id="0x01-Test-1-1"><a href="#0x01-Test-1-1" class="headerlink" title="0x01:Test_1.1"></a>0x01:Test_1.1</h2><p><img src="/2018/08/21/Assembly_test/1.1.png" alt=""></p>
 <ol>
-<li>8KB也就是8*1024Byte，所以宽度为8*1024=8192</li>
+<li>1个CPU的寻址能力为8KB，8KB=8*1024Byte，也就是8192个存储单元，8192为2^13，所以地址总线的宽度为13</li>
 <li>1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023</li>
 <li>1KB=1024Byte=8*1024bit=8192bit</li>
-<li></li>
+<li>1GB=1073741824(2^30) 1MB=1048576Byte(2^20) 1KB=1024(2^10)Byte</li>
+<li>16根也就是2^16Byte，64(2^6)KB，20根就是1MB，24根就是16MB，32根就是4GB</li>
+<li>有几根就是几个bit，所以答案为1、1、2、2、4</li>
+<li>8086数据总线宽为16根，所以一次能读2字节的数据，80386数据总线宽为32根，一次能读4字节的数据，所以答案为512和256</li>
+<li>都是二进制信息</li>
 </ol>
 
       
@@ -639,7 +643,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">6.6k</span>
+    <span title="Site words total count">6.8k</span>
   
 </div>
 
