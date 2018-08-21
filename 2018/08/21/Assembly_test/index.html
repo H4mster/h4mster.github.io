@@ -99,7 +99,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/1.1.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/2.1.png">
-<meta property="og:updated_time" content="2018-08-21T22:54:57.571Z">
+<meta property="og:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/2.2.png">
+<meta property="og:updated_time" content="2018-08-21T23:31:12.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编语言(第三版) 测验">
 <meta name="twitter:description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  1个CPU的寻址能力为8KB，8KB=8*1024Byte，也就是8192个存储单元，8192为2^13，所以地址总线的宽度为13 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192">
@@ -349,7 +350,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  391
+                  477
                 </span>
               
 
@@ -392,6 +393,11 @@
 </li>
 <li><p>mov ax, 2    AX = 2<br>add ax, ax  AX = 4<br>add ax, ax  AX = 8<br>add ax, ax  AX = 16</p>
 </li>
+</ol>
+<h2 id="0x03-Test-2-2"><a href="#0x03-Test-2-2" class="headerlink" title="0x03:Test_2.2"></a>0x03:Test_2.2</h2><p><img src="/2018/08/21/Assembly_test/2.2.png" alt=""></p>
+<ol>
+<li>仅通过改变偏移地址寻址，那么EA的范围为0000~1000FH</li>
+<li>因为物理地址 = SA * 16 + EA,令物理地址为20000H<br>则SA = (20000H - EA) / 16<br>代入EA最大值FFFFH解得SA = 1001H。<br>所以最小为1001H最大为2000H<br>所以当SA小于1001H大于2000H时，EA无伦怎样变化都无法寻到20000H单元</li>
 </ol>
 
       
@@ -617,7 +623,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00:序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-Test-1-1"><span class="nav-number">2.</span> <span class="nav-text">0x01:Test_1.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-Test-2-1"><span class="nav-number">3.</span> <span class="nav-text">0x02:Test_2.1</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00:序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-Test-1-1"><span class="nav-number">2.</span> <span class="nav-text">0x01:Test_1.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-Test-2-1"><span class="nav-number">3.</span> <span class="nav-text">0x02:Test_2.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-Test-2-2"><span class="nav-number">4.</span> <span class="nav-text">0x03:Test_2.2</span></a></li></ol></div>
             
 
           </div>
@@ -651,7 +657,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">6.9k</span>
+    <span title="Site words total count">7.0k</span>
   
 </div>
 
