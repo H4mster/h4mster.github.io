@@ -90,21 +90,20 @@
 
 
 
-<meta name="description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  1个CPU的寻址能力为8KB，8KB=8*1024Byte，也就是8192个存储单元，8192为2^13，所以地址总线的宽度为13 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192">
+<meta name="description" content="0x00:序08/21/2018 开始学习汇编语言零散地记录一些东西 0x01:汇编中嵌套循环用一个例子来解释，用一个4x3的循环让字符串中的字母变为大写12345678910111213141516171819202122232425262728293031323334353637383940414243444546assume cs:code,ds:data,ss:stackdata segm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="汇编语言(第三版) 测验">
+<meta property="og:title" content="关于汇编的学习">
 <meta property="og:url" content="http://h4mster.github.io/2018/08/21/Assembly_test/index.html">
 <meta property="og:site_name" content="H4mster&#39;s blog">
-<meta property="og:description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  1个CPU的寻址能力为8KB，8KB=8*1024Byte，也就是8192个存储单元，8192为2^13，所以地址总线的宽度为13 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192">
+<meta property="og:description" content="0x00:序08/21/2018 开始学习汇编语言零散地记录一些东西 0x01:汇编中嵌套循环用一个例子来解释，用一个4x3的循环让字符串中的字母变为大写12345678910111213141516171819202122232425262728293031323334353637383940414243444546assume cs:code,ds:data,ss:stackdata segm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/1.1.png">
-<meta property="og:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/2.1.png">
-<meta property="og:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/2.2.png">
-<meta property="og:updated_time" content="2018-08-21T23:31:12.071Z">
+<meta property="og:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/1.png">
+<meta property="og:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/2.png">
+<meta property="og:updated_time" content="2018-08-24T01:48:40.821Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="汇编语言(第三版) 测验">
-<meta name="twitter:description" content="0x00:序08/21/2018 开始学习汇编语言有机会的话会上传一些笔记和思维导图 0x01:Test_1.1  1个CPU的寻址能力为8KB，8KB=8*1024Byte，也就是8192个存储单元，8192为2^13，所以地址总线的宽度为13 1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023 1KB=1024Byte=8*1024bit=8192">
-<meta name="twitter:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/1.1.png">
+<meta name="twitter:title" content="关于汇编的学习">
+<meta name="twitter:description" content="0x00:序08/21/2018 开始学习汇编语言零散地记录一些东西 0x01:汇编中嵌套循环用一个例子来解释，用一个4x3的循环让字符串中的字母变为大写12345678910111213141516171819202122232425262728293031323334353637383940414243444546assume cs:code,ds:data,ss:stackdata segm">
+<meta name="twitter:image" content="http://h4mster.github.io/2018/08/21/Assembly_test/1.png">
 
 
 
@@ -141,7 +140,7 @@
 
 
 
-  <title>汇编语言(第三版) 测验 | H4mster's blog</title>
+  <title>关于汇编的学习 | H4mster's blog</title>
   
 
 
@@ -295,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">汇编语言(第三版) 测验</h1>
+          <h1 class="post-title" itemprop="name headline">关于汇编的学习</h1>
         
 
         <div class="post-meta">
@@ -325,7 +324,7 @@
 
           
           
-             <span id="/2018/08/21/Assembly_test/" class="leancloud_visitors" data-flag-title="汇编语言(第三版) 测验">
+             <span id="/2018/08/21/Assembly_test/" class="leancloud_visitors" data-flag-title="关于汇编的学习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -350,7 +349,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  477
+                  809
                 </span>
               
 
@@ -375,31 +374,10 @@
       
 
       
-        <h2 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00:序"></a>0x00:序</h2><p>08/21/2018 开始学习汇编语言<br>有机会的话会上传一些笔记和思维导图</p>
-<h2 id="0x01-Test-1-1"><a href="#0x01-Test-1-1" class="headerlink" title="0x01:Test_1.1"></a>0x01:Test_1.1</h2><p><img src="/2018/08/21/Assembly_test/1.1.png" alt=""></p>
-<ol>
-<li>1个CPU的寻址能力为8KB，8KB=8*1024Byte，也就是8192个存储单元，8192为2^13，所以地址总线的宽度为13</li>
-<li>1KB也就是1024Byte，所以有1024个存储单元，存储单元编号从0开始，所以是0到1023</li>
-<li>1KB=1024Byte=8*1024bit=8192bit</li>
-<li>1GB=1073741824(2^30) 1MB=1048576Byte(2^20) 1KB=1024(2^10)Byte</li>
-<li>16根也就是2^16Byte，64(2^6)KB，20根就是1MB，24根就是16MB，32根就是4GB</li>
-<li>有几根就是几个bit，所以答案为1、1、2、2、4</li>
-<li>8086数据总线宽为16根，所以一次能读2字节的数据，80386数据总线宽为32根，一次能读4字节的数据，所以答案为512和256</li>
-<li>都是二进制信息</li>
-</ol>
-<h2 id="0x02-Test-2-1"><a href="#0x02-Test-2-1" class="headerlink" title="0x02:Test_2.1"></a>0x02:Test_2.1</h2><p><img src="/2018/08/21/Assembly_test/2.1.png" alt=""></p>
-<ol>
-<li><p>(1) AX = 62627 = F4A3H<br>(2) 令AX的高八位变为31H<br> AX = 31A3H<br>(3) 令AX的低八位变为23H<br> AX = 3123H<br>(4) 令AX自增AX AX = 6246H<br>(5) BX = 826CH<br>(6) CX = 6246H<br>(7) AX = 826CH<br>(8) 24-16=8进1<br> 12+1=13(D)<br> 4<br> 16-16=0进1(因为是16位存储器，所以这一位丢失了)<br> AX = 04D8H<br>(9) 令AX的低八位变为BX的高八位<br> AX = 0482H<br>(10)令AH的高八位变为BX的低八位<br> AX = 6C82H<br>(11)令AH自增AH<br> AX = D882H<br>(12)令AL自增6(十进制)<br> AX = D888H<br>(13)令AL自增AL<br> 88+88=(16)(16)=(1)(1)(0)因为AL只有八位，所以第一个1丢失<br> AX = D810H<br>(14)AX = 6246H</p>
-</li>
-<li><p>mov ax, 2    AX = 2<br>add ax, ax  AX = 4<br>add ax, ax  AX = 8<br>add ax, ax  AX = 16</p>
-</li>
-</ol>
-<h2 id="0x03-Test-2-2"><a href="#0x03-Test-2-2" class="headerlink" title="0x03:Test_2.2"></a>0x03:Test_2.2</h2><p><img src="/2018/08/21/Assembly_test/2.2.png" alt=""></p>
-<ol>
-<li>仅通过改变偏移地址寻址，那么EA的范围为0000~1000FH</li>
-<li>因为物理地址 = SA * 16 + EA,令物理地址为20000H<br>则SA = (20000H - EA) / 16<br>代入EA最大值FFFFH解得SA = 1001H。<br>所以最小为1001H最大为2000H<br>所以当SA小于1001H大于2000H时，EA无伦怎样变化都无法寻到20000H单元</li>
-</ol>
-
+        <h2 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00:序"></a>0x00:序</h2><p>08/21/2018 开始学习汇编语言<br>零散地记录一些东西</p>
+<h2 id="0x01-汇编中嵌套循环"><a href="#0x01-汇编中嵌套循环" class="headerlink" title="0x01:汇编中嵌套循环"></a>0x01:汇编中嵌套循环</h2><p>用一个例子来解释，用一个4x3的循环让字符串中的字母变为大写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code,ds:data,ss:stack</span><br><span class="line"></span><br><span class="line">data segment</span><br><span class="line"></span><br><span class="line">	db &apos;ibm             &apos;</span><br><span class="line">	db &apos;dec             &apos;</span><br><span class="line">	db &apos;dos             &apos;</span><br><span class="line">	db &apos;vax             &apos;</span><br><span class="line"></span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">stack segment</span><br><span class="line"></span><br><span class="line">	dw 0,0,0,0,0,0,0,0		;定义一个段用来做栈段，容量为16个字节</span><br><span class="line"></span><br><span class="line">stack ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line"></span><br><span class="line">start:	mov ax,stack</span><br><span class="line">		mov ss,ax</span><br><span class="line">		mov sp,16			;设置栈顶</span><br><span class="line"></span><br><span class="line">		mov ax,data</span><br><span class="line">		mov ds,ax			;让ds寄存器指向数据段</span><br><span class="line">		mov bx,0			</span><br><span class="line"></span><br><span class="line">		mov cx,4</span><br><span class="line">	s0:	push cx				;让外层循环的cx入栈</span><br><span class="line">		mov si,0</span><br><span class="line"></span><br><span class="line">		mov cx,3			;设置内层循环次数</span><br><span class="line">	s1:	mov al,[bx+si]</span><br><span class="line">		and al,11011111b</span><br><span class="line">		mov [bx+si],al</span><br><span class="line">		inc si</span><br><span class="line">		loop s1</span><br><span class="line"></span><br><span class="line">		add bx,10h</span><br><span class="line">		pop cx				;恢复cx</span><br><span class="line">		loop s0</span><br><span class="line"></span><br><span class="line">		mov ah,4ch</span><br><span class="line">		int 21h</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure></p>
+<h2 id="0x02-实验7-寻址方式在结构化数据访问中的应用"><a href="#0x02-实验7-寻址方式在结构化数据访问中的应用" class="headerlink" title="0x02 实验7 寻址方式在结构化数据访问中的应用"></a>0x02 实验7 寻址方式在结构化数据访问中的应用</h2><p><img src="/2018/08/21/Assembly_test/1.png" alt="1"><br>076A:0000~076A:0053中记录的是年份<br>收入使用4个byte类型来存储的，一个数据占4个字节，0x53+21*4=0xA7<br>076A:0054~076A:00A7记录的是收入(千美元)<br>雇员人数使用word类型来存储，所以一个数据占2个字节，0xA7+21*2=0xD1<br>076A:00A8~076A:00D1记录的是雇员人数<br><img src="/2018/08/21/Assembly_test/2.png" alt="2"><br>我们要将年份保存在076A:00E0~076A:0220的第0~3个字节中<br>收入保存在5~8个字节中<br>雇员保存在第10、11个字节中<br>人均收入保存在第13、14个字节中<br>根据这个思路就可以写出代码了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code,ds:data</span><br><span class="line"></span><br><span class="line">data segment</span><br><span class="line"></span><br><span class="line">	db &apos;1975&apos;,&apos;1976&apos;,&apos;1977&apos;,&apos;1978&apos;,&apos;1979&apos;,&apos;1980&apos;,&apos;1981&apos;,&apos;1982&apos;,&apos;1983&apos;</span><br><span class="line">	db &apos;1984&apos;,&apos;1985&apos;,&apos;1986&apos;,&apos;1987&apos;,&apos;1988&apos;,&apos;1989&apos;,&apos;1990&apos;,&apos;1991&apos;,&apos;1992&apos;</span><br><span class="line">	db &apos;1993&apos;,&apos;1994&apos;,&apos;1995&apos;</span><br><span class="line">	;以上是表示21年的21个字符串</span><br><span class="line"></span><br><span class="line">	dd 16,22,382,1356,2390,8000,16000,24486,50065,97479,140417,197514</span><br><span class="line">	dd 345980,590827,803530,1183000,1843000,2759000,3753000,4649000,5937000</span><br><span class="line">	;以上是表示21年公司总收入的21个dword形数据</span><br><span class="line"></span><br><span class="line">	dw 3,7,9,13,28,38,130,220,476,778,1001,1442,2258,2793,4037,5635,8226</span><br><span class="line">	dw 11542,14430,15257,17800</span><br><span class="line">	;以上是表示21年公司雇员人数的21个word数据</span><br><span class="line"></span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">table segment</span><br><span class="line">	</span><br><span class="line">	db 21 dup(&apos;year summ ne ?? &apos;)</span><br><span class="line"></span><br><span class="line">table ends</span><br><span class="line"></span><br><span class="line">stack segment</span><br><span class="line"></span><br><span class="line">	db 8 dup(0)</span><br><span class="line"></span><br><span class="line">stack ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">	</span><br><span class="line">start:	mov ax,data</span><br><span class="line">		mov ds,ax</span><br><span class="line">		mov ax,table</span><br><span class="line">		mov es,ax</span><br><span class="line">		mov ax,stack</span><br><span class="line">		mov ss,ax</span><br><span class="line"></span><br><span class="line">		mov bx,0</span><br><span class="line">		mov si,0</span><br><span class="line"></span><br><span class="line">		mov cx,21</span><br><span class="line">	s0:	push cx</span><br><span class="line">		mov bp,0</span><br><span class="line"></span><br><span class="line">		mov cx,4</span><br><span class="line">	s1:	mov al,[bx]</span><br><span class="line">		mov es:[si+bp],al</span><br><span class="line">		inc bx</span><br><span class="line">		inc bp</span><br><span class="line">		loop s1</span><br><span class="line"></span><br><span class="line">		add si,10h</span><br><span class="line">		pop cx</span><br><span class="line">		loop s0				;录入年份</span><br><span class="line"></span><br><span class="line">		mov si,0</span><br><span class="line">		mov di,bx</span><br><span class="line">		add di,84</span><br><span class="line"></span><br><span class="line">	s2: push cx</span><br><span class="line"></span><br><span class="line">		mov ax, ds:[di]</span><br><span class="line">		mov word ptr es:[si].10, ax</span><br><span class="line">		add di,2			;录入雇员</span><br><span class="line">		</span><br><span class="line">		mov ax,[bx]</span><br><span class="line">		mov dx,[bx].2</span><br><span class="line">		mov es:[si].5,ax</span><br><span class="line">		mov es:[si].7,dx</span><br><span class="line">		add bx,4			;录入收入</span><br><span class="line">		</span><br><span class="line">		div word ptr es:[si].10</span><br><span class="line">		mov es:[si].13,ax	;录入人均收入</span><br><span class="line"></span><br><span class="line">		add si,10h</span><br><span class="line">		loop s2</span><br><span class="line"></span><br><span class="line">	mov ah,4ch</span><br><span class="line">	int 21h</span><br><span class="line"></span><br><span class="line">code ends</span><br><span class="line"></span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -623,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00:序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-Test-1-1"><span class="nav-number">2.</span> <span class="nav-text">0x01:Test_1.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-Test-2-1"><span class="nav-number">3.</span> <span class="nav-text">0x02:Test_2.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-Test-2-2"><span class="nav-number">4.</span> <span class="nav-text">0x03:Test_2.2</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00:序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-汇编中嵌套循环"><span class="nav-number">2.</span> <span class="nav-text">0x01:汇编中嵌套循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-实验7-寻址方式在结构化数据访问中的应用"><span class="nav-number">3.</span> <span class="nav-text">0x02 实验7 寻址方式在结构化数据访问中的应用</span></a></li></ol></div>
             
 
           </div>
@@ -657,7 +635,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7.0k</span>
+    <span title="Site words total count">7.4k</span>
   
 </div>
 
