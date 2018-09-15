@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="我 莫得感情">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://h4mster.github.io/about/index.html">
+<meta name="description" content="0x00 PrologueMemorize some basic Octave or Matlab usage. 0x01 MiscellaneousModify the symbol at the beginning of each line1PS1(&amp;apos;&amp;apos;) Change the decimals:12format long %This wiil make decimals">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Octave">
+<meta property="og:url" content="http://h4mster.github.io/2018/09/15/2018_9_15_Octave_and_matlab/index.html">
 <meta property="og:site_name" content="H4mster&#39;s blog">
-<meta property="og:description" content="我 莫得感情">
+<meta property="og:description" content="0x00 PrologueMemorize some basic Octave or Matlab usage. 0x01 MiscellaneousModify the symbol at the beginning of each line1PS1(&amp;apos;&amp;apos;) Change the decimals:12format long %This wiil make decimals">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-14T08:53:33.566Z">
+<meta property="og:updated_time" content="2018-09-15T02:40:57.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="我 莫得感情">
+<meta name="twitter:title" content="Octave">
+<meta name="twitter:description" content="0x00 PrologueMemorize some basic Octave or Matlab usage. 0x01 MiscellaneousModify the symbol at the beginning of each line1PS1(&amp;apos;&amp;apos;) Change the decimals:12format long %This wiil make decimals">
 
 
 
@@ -130,14 +130,14 @@
 
 
 
-  <link rel="canonical" href="http://h4mster.github.io/about/"/>
+  <link rel="canonical" href="http://h4mster.github.io/2018/09/15/2018_9_15_Octave_and_matlab/"/>
 
 
 
 
 
 
-  <title>about | H4mster's blog</title>
+  <title>Octave | H4mster's blog</title>
   
 
 
@@ -262,33 +262,176 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://h4mster.github.io/2018/09/15/2018_9_15_Octave_and_matlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="H4mster">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H4mster's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">Octave</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-15T09:26:19+08:00">
+                2018-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/15/2018_9_15_Octave_and_matlab/" class="leancloud_visitors" data-flag-title="Octave">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  355
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="0x00-Prologue"><a href="#0x00-Prologue" class="headerlink" title="0x00 Prologue"></a>0x00 Prologue</h3><p>Memorize some basic Octave or Matlab usage.</p>
+<h3 id="0x01-Miscellaneous"><a href="#0x01-Miscellaneous" class="headerlink" title="0x01 Miscellaneous"></a>0x01 Miscellaneous</h3><p>Modify the symbol at the beginning of each line<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS1(&apos;&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>Change the decimals:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">format long %This wiil make decimals become 15</span><br><span class="line">format short %This wiil make decimals become 4</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x02-Operator"><a href="#0x02-Operator" class="headerlink" title="0x02 Operator"></a>0x02 Operator</h3><p>Fundamental operator: +、 -、 *、 /、 ^(power)<br>Equal or not: ==、 ~=<br>Logical operator: &amp;&amp;、 ||</p>
+<h3 id="0x03-Variable"><a href="#0x03-Variable" class="headerlink" title="0x03 Variable"></a>0x03 Variable</h3><p>Define a variable, like this.<br>(Tips: ‘%’ is the annotation symbol in Octave.<br>Just like ‘//‘ in C, ‘#’ in Python.)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = 3	%This will print a &quot;a = 3&quot; string.</span><br><span class="line">a = 3;	%This won&apos;t print anything.</span><br><span class="line">b = &apos;Hello World&apos;;</span><br><span class="line">c = (3 &gt;= 1); %result is c = 1;</span><br></pre></td></tr></table></figure></p>
+<p>Now, let’s see the Octave how to print variable<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">disp(sprintf(&apos;2 decimals: %0.2f&apos;, a)) %This will print a &quot;2 decimals: 3.00&quot; string.</span><br></pre></td></tr></table></figure></p>
+<p>Ok, let’s try to assign a Variable to the matrix or vector.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; A = [1 2; 3 2; 5 6] %This will make A become a 2x3 matrix.</span><br><span class="line"></span><br><span class="line">&gt;&gt; V = [1 2 3] %This wiil make V become a row vector that 3 demension.</span><br><span class="line"></span><br><span class="line">&gt;&gt; V = [1;2;3] %This wiil make V become a column vector that 3 demension.</span><br><span class="line"></span><br><span class="line">&gt;&gt; V = 1:0.1:2 %It sets V to the bunch of elements that start from 1, and increment steps of 0.1 until it get up to 2. So, V is going to be a row vector.</span><br><span class="line"></span><br><span class="line">&gt;&gt; V = 1:6 %V is going to be [1 2 3 4 5 6], step is 1.</span><br><span class="line"></span><br><span class="line">&gt;&gt; C = ones(2,3) %This is a command that generates a 2x1 matrix and all of the elements are 1.</span><br><span class="line"></span><br><span class="line">&gt;&gt; C = 2 * ones(2,3) %This is a command that generates a 2x1 matrix and all of the elements are 2.</span><br><span class="line"></span><br><span class="line">&gt;&gt; C = zeros(2,3) %Haha, you know it.</span><br><span class="line"></span><br><span class="line">&gt;&gt; C = rand(3,3) %rand~ rand~ rand~ The range is between 0 and 1.</span><br><span class="line"></span><br><span class="line">&gt;&gt; C = randn(3,3) %emmmm... Please go to Google to search for it...</span><br><span class="line"></span><br><span class="line">&gt;&gt; w = -6 + sqrt(10)*(randn(1,10000));</span><br><span class="line">&gt;&gt; hist(w) %Draw a histogram of w.</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
     
     
+	
+	
+	
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/21/Assembly_test/" rel="next" title="关于汇编的学习">
+                <i class="fa fa-chevron-left"></i> 关于汇编的学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -321,8 +464,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -440,6 +592,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-Prologue"><span class="nav-number">1.</span> <span class="nav-text">0x00 Prologue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Miscellaneous"><span class="nav-number">2.</span> <span class="nav-text">0x01 Miscellaneous</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-Operator"><span class="nav-number">3.</span> <span class="nav-text">0x02 Operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-Variable"><span class="nav-number">4.</span> <span class="nav-text">0x03 Variable</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
