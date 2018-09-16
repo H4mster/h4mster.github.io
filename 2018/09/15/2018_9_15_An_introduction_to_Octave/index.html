@@ -105,8 +105,8 @@
 <meta property="og:image" content="http://h4mster.github.io/2018/09/15/2018_9_15_An_introduction_to_Octave/p6.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/09/15/2018_9_15_An_introduction_to_Octave/p7.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/09/15/2018_9_15_An_introduction_to_Octave/p8.png">
-<meta property="og:image" content="http://h4mster.github.io/2018/09/15/2018_9_15_An_introduction_to_Octave/p8.png">
-<meta property="og:updated_time" content="2018-09-16T14:57:29.435Z">
+<meta property="og:image" content="http://h4mster.github.io/2018/09/15/2018_9_15_An_introduction_to_Octave/p9.png">
+<meta property="og:updated_time" content="2018-09-16T14:58:22.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="An introduction to Octave">
 <meta name="twitter:description" content="0x00 PrologueMemorize some basic Octave or Matlab usage. 0x01 MiscellaneousModify the symbol at the beginning of each line1PS1(&amp;apos;&amp;apos;) Change the decimals:12format long %This wiil make decimals">
@@ -423,7 +423,7 @@
 <p>Now, let’s use it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; % First, add the directory where functions in to the path.</span><br><span class="line">&gt;&gt; addpath(&apos;C:\users\xxx\desktop\Octave_functions&apos;);</span><br><span class="line">&gt;&gt; squareThisNumber(3)</span><br><span class="line">ans =  9</span><br></pre></td></tr></table></figure></p>
 <p>One concept that Octave has a that many other programming languages don’t, is that it can also let you define functions that return multiple values or multiple arguments.<br>So here’s an example of that.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function [y1,y2] = squareAndCubeThisNumber(x)</span><br><span class="line">	</span><br><span class="line">	y1 = x ^ 2;</span><br><span class="line">	y2 = x ^ 3;</span><br></pre></td></tr></table></figure></p>
 <p>Run it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; [a, b] = squareAndCubeThisNumber(3)</span><br><span class="line">a =  9</span><br><span class="line">b =  27</span><br></pre></td></tr></table></figure></p>
-<p>Now, let’s solve a example.<br><img src="/2018/09/15/2018_9_15_An_introduction_to_Octave/p8.png" alt=""><br>This is a data set.And what I’d like to do is to define a function to compute the cost function J of theta for different values of theta.</p>
+<p>Now, let’s solve a example.<br><img src="/2018/09/15/2018_9_15_An_introduction_to_Octave/p9.png" alt=""><br>This is a data set.And what I’d like to do is to define a function to compute the cost function J of theta for different values of theta.</p>
 <p>First let’s put the data into Octave.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 
       
