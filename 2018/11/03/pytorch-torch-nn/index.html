@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/p1.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/p2.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/p3.png">
-<meta property="og:updated_time" content="2018-11-03T13:31:41.940Z">
+<meta property="og:updated_time" content="2018-11-03T13:36:51.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pytorch学习(1)---神经网络工具箱nn">
 <meta name="twitter:description" content="0x00 nn.Moudletorch.nn是专门为深度学习设计的模块，torch.nn的核心数据结构是Module，它是一个抽象的概念，既可以表示神经网络中的某个layer，又可以表示一个包含很多层layer的神经网络。在实际使用过程中，最常见的做法是继承nn.Module，并自己编写网络。 这是一个用nn.Module实现全连接层的例子 1234567891011121314151617181">
@@ -384,7 +384,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1,566
+                  1,558
                 </span>
               
 
@@ -431,16 +431,16 @@
 <h3 id="0x01-常用的神经网络层"><a href="#0x01-常用的神经网络层" class="headerlink" title="0x01 常用的神经网络层"></a>0x01 常用的神经网络层</h3><h4 id="图像相关层"><a href="#图像相关层" class="headerlink" title="图像相关层"></a>图像相关层</h4><p>图像相关层主要包括卷积层(Conv)、池化层(Pool)等，这些层在实际使用中可以分为一维(1D)、二维(2D)、三维(3D)，池化方式又分为AvgPool、MaxPool、AdaptivaAvgPool(自适应池化)等。卷积层除了常用的前向卷积外，还有逆卷积。</p>
 <p>in:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> torchvision.transforms <span class="keyword">import</span> ToTensor, ToPILImage</span><br><span class="line"></span><br><span class="line">to_tensor = ToTensor() <span class="comment"># img -&gt; tensor</span></span><br><span class="line">to_pil = ToPILImage()</span><br><span class="line">path = <span class="string">'imgs/test.jpg'</span></span><br><span class="line">img = Image.open(path)</span><br><span class="line">img.show()</span><br></pre></td></tr></table></figure></p>
 <p>程序输出:</p>
-<div align="center"><img src="/2018/11/03/pytorch-torch-nn/p1.png" alt="">{height=”300” width=”300”}</div>
+<div align="center"><img src="/2018/11/03/pytorch-torch-nn/p1.png" alt=""></div>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">input = to_tensor(img).unsqueeze(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 锐化卷积核</span></span><br><span class="line">kernel = torch.ones(<span class="number">3</span>, <span class="number">3</span>) / <span class="number">-9</span></span><br><span class="line">kernel[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">conv = nn.Conv2d(in_channels=<span class="number">3</span>,out_channels=<span class="number">3</span>,kernel_size=(<span class="number">3</span>, <span class="number">3</span>),stride=<span class="number">1</span>, bias=<span class="keyword">False</span>)</span><br><span class="line">conv.weight.data = kernel.expand_as(conv.weight.data)</span><br><span class="line"></span><br><span class="line">out = conv(input)</span><br><span class="line">out = to_pil(out.data.squeeze(<span class="number">0</span>))</span><br><span class="line">out.show()</span><br></pre></td></tr></table></figure>
 <p>程序输出:</p>
-<div align="center" height="300" width="300"><img src="/2018/11/03/pytorch-torch-nn/p2.png" alt=""></div>
+<div align="center"><img src="/2018/11/03/pytorch-torch-nn/p2.png" alt=""></div>
 
 <p>in:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pool = nn.AvgPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">print(list(pool.Parameters())) <span class="comment">#池化层无任何可学习参数</span></span><br><span class="line"><span class="comment"># out:</span></span><br><span class="line"><span class="comment"># []</span></span><br></pre></td></tr></table></figure></p>
 <p>in:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">out = pool(input)</span><br><span class="line">out = to_pil(out.data.squeeze(<span class="number">0</span>))</span><br></pre></td></tr></table></figure></p>
 <p>程序输出:</p>
-<div align="center"><img src="/2018/11/03/pytorch-torch-nn/p3.png" alt="">{height=”300” width=”300”}</div>
+<div align="center"><img src="/2018/11/03/pytorch-torch-nn/p3.png" alt=""></div>
 
 <p>除了卷积层和池化层，深度学习中还常用到下面几个层：</p>
 <ul>
