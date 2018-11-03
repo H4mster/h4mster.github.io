@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://h4mster.github.io/2018/09/15/2018_9_15_An_introduction_to_Octave/p7.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/09/15/2018_9_15_An_introduction_to_Octave/p8.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/09/15/2018_9_15_An_introduction_to_Octave/p9.png">
-<meta property="og:updated_time" content="2018-09-16T14:58:22.396Z">
+<meta property="og:updated_time" content="2018-11-03T13:06:40.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="An introduction to Octave">
 <meta name="twitter:description" content="0x00 PrologueMemorize some basic Octave or Matlab usage. 0x01 MiscellaneousModify the symbol at the beginning of each line1PS1(&amp;apos;&amp;apos;) Change the decimals:12format long %This wiil make decimals">
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2,970
+                  3,052
                 </span>
               
 
@@ -424,8 +424,9 @@
 <p>One concept that Octave has a that many other programming languages don’t, is that it can also let you define functions that return multiple values or multiple arguments.<br>So here’s an example of that.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function [y1,y2] = squareAndCubeThisNumber(x)</span><br><span class="line">	</span><br><span class="line">	y1 = x ^ 2;</span><br><span class="line">	y2 = x ^ 3;</span><br></pre></td></tr></table></figure></p>
 <p>Run it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; [a, b] = squareAndCubeThisNumber(3)</span><br><span class="line">a =  9</span><br><span class="line">b =  27</span><br></pre></td></tr></table></figure></p>
 <p>Now, let’s solve a example.<br><img src="/2018/09/15/2018_9_15_An_introduction_to_Octave/p9.png" alt=""><br>This is a data set.And what I’d like to do is to define a function to compute the cost function J of theta for different values of theta.</p>
-<p>First let’s put the data into Octave.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-
+<p>Let’s do it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function J = costFunctionJ(X, y, theta)</span><br><span class="line">  </span><br><span class="line">  %X is the &quot;design matrix&quot; containing our training examples.</span><br><span class="line">  %y is the class labels.</span><br><span class="line"></span><br><span class="line">  m = size(X,1);             % number of training example</span><br><span class="line">  predictions = X * theta;  % predictions of hypothesis on all m examples</span><br><span class="line">  sqrErrors = (predictions - y) .^ 2;   %square error</span><br><span class="line">  </span><br><span class="line">  J = 1 / (2 * m) * sum(sqrErrors);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; X = [1 1; 1 2; 1 3];</span><br><span class="line">&gt;&gt; Y = [1; 2; 3];</span><br><span class="line">&gt;&gt; theta = [0; 1];</span><br><span class="line">&gt;&gt; J = costFunctionJ(X, Y, theta)</span><br><span class="line">J = 0</span><br></pre></td></tr></table></figure>
+<h3 id="0x09-Vectorization"><a href="#0x09-Vectorization" class="headerlink" title="0x09 Vectorization"></a>0x09 Vectorization</h3>
       
     </div>
     
@@ -451,8 +452,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/21/Assembly_test/" rel="next" title="关于汇编的学习">
-                <i class="fa fa-chevron-left"></i> 关于汇编的学习
+              <a href="/2018/08/17/BUGKU_WEB/" rel="next" title="BUGKU_WEB">
+                <i class="fa fa-chevron-left"></i> BUGKU_WEB
               </a>
             
           </div>
@@ -540,7 +541,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -649,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-Prologue"><span class="nav-number">1.</span> <span class="nav-text">0x00 Prologue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Miscellaneous"><span class="nav-number">2.</span> <span class="nav-text">0x01 Miscellaneous</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-Operator"><span class="nav-number">3.</span> <span class="nav-text">0x02 Operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-Variable"><span class="nav-number">4.</span> <span class="nav-text">0x03 Variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-Moving-data-around-Load-and-save-data"><span class="nav-number">5.</span> <span class="nav-text">0x04 Moving data around(Load and save data).</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-Manipulate-data"><span class="nav-number">6.</span> <span class="nav-text">0x05 Manipulate data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-Computing-on-data"><span class="nav-number">7.</span> <span class="nav-text">0x06 Computing on data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-Plotting-data"><span class="nav-number">8.</span> <span class="nav-text">0x07 Plotting data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x08-for-while-if-statements-and-functions"><span class="nav-number">9.</span> <span class="nav-text">0x08 for, while, if statements, and functions.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-for"><span class="nav-number"></span> <span class="nav-text">0x00 for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-while"><span class="nav-number"></span> <span class="nav-text">0x01 while</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-if"><span class="nav-number"></span> <span class="nav-text">0x02 if</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-define-and-use-function"><span class="nav-number"></span> <span class="nav-text">0x03 define and use function</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-Prologue"><span class="nav-number">1.</span> <span class="nav-text">0x00 Prologue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Miscellaneous"><span class="nav-number">2.</span> <span class="nav-text">0x01 Miscellaneous</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-Operator"><span class="nav-number">3.</span> <span class="nav-text">0x02 Operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-Variable"><span class="nav-number">4.</span> <span class="nav-text">0x03 Variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-Moving-data-around-Load-and-save-data"><span class="nav-number">5.</span> <span class="nav-text">0x04 Moving data around(Load and save data).</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-Manipulate-data"><span class="nav-number">6.</span> <span class="nav-text">0x05 Manipulate data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-Computing-on-data"><span class="nav-number">7.</span> <span class="nav-text">0x06 Computing on data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-Plotting-data"><span class="nav-number">8.</span> <span class="nav-text">0x07 Plotting data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x08-for-while-if-statements-and-functions"><span class="nav-number">9.</span> <span class="nav-text">0x08 for, while, if statements, and functions.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-for"><span class="nav-number"></span> <span class="nav-text">0x00 for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-while"><span class="nav-number"></span> <span class="nav-text">0x01 while</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-if"><span class="nav-number"></span> <span class="nav-text">0x02 if</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-define-and-use-function"><span class="nav-number"></span> <span class="nav-text">0x03 define and use function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x09-Vectorization"><span class="nav-number">1.</span> <span class="nav-text">0x09 Vectorization</span></a></li></ol></div>
             
 
           </div>
@@ -683,7 +684,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">10.3k</span>
+    <span title="Site words total count">8.3k</span>
   
 </div>
 
