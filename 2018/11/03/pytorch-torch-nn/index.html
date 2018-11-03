@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="pytorch学习(1)—神经网络工具箱nn0x00 nn.Moudletorch.nn是专门为深度学习设计的模块，torch.nn的核心数据结构是Module，它是一个抽象的概念，既可以表示神经网络中的某个layer，又可以表示一个包含很多层layer的神经网络。在实际使用过程中，最常见的做法是继承nn.Module，并自己编写网络。 这是一个用nn.Module实现全连接层的例子 123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pytorch-torch.nn">
+<meta property="og:url" content="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/index.html">
+<meta property="og:site_name" content="H4mster&#39;s blog">
+<meta property="og:description" content="pytorch学习(1)—神经网络工具箱nn0x00 nn.Moudletorch.nn是专门为深度学习设计的模块，torch.nn的核心数据结构是Module，它是一个抽象的概念，既可以表示神经网络中的某个layer，又可以表示一个包含很多层layer的神经网络。在实际使用过程中，最常见的做法是继承nn.Module，并自己编写网络。 这是一个用nn.Module实现全连接层的例子 123456">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/p1.png">
+<meta property="og:image" content="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/p2.png">
+<meta property="og:image" content="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/p3.png">
+<meta property="og:updated_time" content="2018-11-03T13:19:14.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pytorch-torch.nn">
+<meta name="twitter:description" content="pytorch学习(1)—神经网络工具箱nn0x00 nn.Moudletorch.nn是专门为深度学习设计的模块，torch.nn的核心数据结构是Module，它是一个抽象的概念，既可以表示神经网络中的某个layer，又可以表示一个包含很多层layer的神经网络。在实际使用过程中，最常见的做法是继承nn.Module，并自己编写网络。 这是一个用nn.Module实现全连接层的例子 123456">
+<meta name="twitter:image" content="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/p1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/"/>
+
+
+
+
+
+
+  <title>pytorch-torch.nn | H4mster's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H4mster's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Life is a dick, sometimes it gets hard for no reason.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://h4mster.github.io/2018/11/03/pytorch-torch-nn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="H4mster">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H4mster's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">pytorch-torch.nn</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-03T03:26:49+08:00">
+                2018-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/03/pytorch-torch-nn/" class="leancloud_visitors" data-flag-title="pytorch-torch.nn">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1,582
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="pytorch学习-1-—神经网络工具箱nn"><a href="#pytorch学习-1-—神经网络工具箱nn" class="headerlink" title="pytorch学习(1)—神经网络工具箱nn"></a>pytorch学习(1)—神经网络工具箱nn</h1><h3 id="0x00-nn-Moudle"><a href="#0x00-nn-Moudle" class="headerlink" title="0x00 nn.Moudle"></a>0x00 nn.Moudle</h3><p>torch.nn是专门为深度学习设计的模块，torch.nn的核心数据结构是Module，它是一个抽象的概念，既可以表示神经网络中的某个layer，又可以表示一个包含很多层layer的神经网络。<br>在实际使用过程中，最常见的做法是继承nn.Module，并自己编写网络。</p>
+<p>这是一个用nn.Module实现全连接层的例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Linear</span><span class="params">(nn.Module)</span>:</span> <span class="comment"># 继承nn.Module</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_features, out_features)</span>:</span></span><br><span class="line">        super(Linear, self).__init__() <span class="comment"># 等价于nn.Module.__init__(self)</span></span><br><span class="line">        self.w = nn.Parameter(torch.randn(in_features, out_features))</span><br><span class="line">        self.b = nn.Parameter(torch.randn(out_features))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        x = x.mm(self.w) <span class="comment"># 矩阵相乘</span></span><br><span class="line">        <span class="keyword">return</span> x + self.b.expand_as(x) <span class="comment"># 将b扩充到x的维度</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    layer = Linear(<span class="number">10</span>, <span class="number">3</span>)</span><br><span class="line">    input = torch.randn(<span class="number">2</span>, <span class="number">10</span>)</span><br><span class="line">    output = layer(input)</span><br><span class="line">    print(output)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># tensor([[-7.1365,  0.2804,  1.4601],</span></span><br><span class="line"><span class="comment">#         [ 0.1497,  3.9891,  0.9615]], grad_fn=&lt;ThAddBackward&gt;)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>自定义层必须继承nn.Module，并且在构造函数中需要调用nn.Module的构造函数，即super(net_name, self).<strong>init</strong>或是nn.Module.<strong>init</strong>(self)。</li>
+<li>在构造函数<strong>init</strong>必须自己定义可学习的参数，并封装成Parameter，就像上面的例子中的w和b，Parameter是一种特殊的Variable，默认需要求导(requires_grad=True)。</li>
+<li>无需写反向传播函数</li>
+</ul>
+<p>下面举一个多层感知机的例子。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Perceptron</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_features, hidden_feature, out_features)</span>:</span></span><br><span class="line">        nn.Module.__init__(self)</span><br><span class="line">        self.layer1 = Linear(in_features, hidden_feature) <span class="comment"># Linear是上个例子中定义的Linear</span></span><br><span class="line">        self.layer2 = Linear(hidden_feature, out_features)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        x = self.layer1(x)</span><br><span class="line">        x = torch.sigmoid(x)</span><br><span class="line">        x = self.layer2(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    perceptron = Perceptron(<span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> name, param <span class="keyword">in</span> perceptron.named_parameters(): <span class="comment"># 查看所有的参数</span></span><br><span class="line">        print(name, param.size())</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># layer1.w torch.Size([3, 4])</span></span><br><span class="line"><span class="comment"># layer1.b torch.Size([4])</span></span><br><span class="line"><span class="comment"># layer2.w torch.Size([4, 1])</span></span><br><span class="line"><span class="comment"># layer2.b torch.Size([1])</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>在<strong>init</strong>中可以直接利用之前定义过的module作为当前module对象的一个子module，它的可学习参数也会成为当前module的可学习参数</li>
+<li><p>Parameter直接命名，例如self.param_name = nn.Parameter(torch.randn(3, 4))，参数被命名为param_name</p>
+<p>PyTorch实现了神经网络中绝大部分layer，这些layer都继承于nn.Module,封装了可学习参数parameter，并实现了forward函数。可以查阅<a href="https://pytorch-cn.readthedocs.io/zh/latest/package_references/torch-nn/" target="_blank" rel="noopener">官方文档</a><br>在阅读文档时主要关注以下几点:</p>
+</li>
+<li><p>构造函数的参数，如nn.Linear(in_features, out_features, bias)，需要关注这三个参数的作用</p>
+</li>
+<li>属性、可学习参数和子module。如nn.Linear中有weight和bias两个可学习参数，不包含子module。</li>
+<li>输入输出的shape，如nn.linear的输入形状是(N, input_features)，输出形状是(N, output_features)，N是batch_size。</li>
+</ul>
+<h3 id="0x01-常用的神经网络层"><a href="#0x01-常用的神经网络层" class="headerlink" title="0x01 常用的神经网络层"></a>0x01 常用的神经网络层</h3><h4 id="图像相关层"><a href="#图像相关层" class="headerlink" title="图像相关层"></a>图像相关层</h4><p>图像相关层主要包括卷积层(Conv)、池化层(Pool)等，这些层在实际使用中可以分为一维(1D)、二维(2D)、三维(3D)，池化方式又分为AvgPool、MaxPool、AdaptivaAvgPool(自适应池化)等。卷积层除了常用的前向卷积外，还有逆卷积。</p>
+<p>in:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> torchvision.transforms <span class="keyword">import</span> ToTensor, ToPILImage</span><br><span class="line"></span><br><span class="line">to_tensor = ToTensor() <span class="comment"># img -&gt; tensor</span></span><br><span class="line">to_pil = ToPILImage()</span><br><span class="line">path = <span class="string">'imgs/test.jpg'</span></span><br><span class="line">img = Image.open(path)</span><br><span class="line">img.show()</span><br></pre></td></tr></table></figure></p>
+<p>程序输出:</p>
+<div align="center"><img src="/2018/11/03/pytorch-torch-nn/p1.png" alt="">{:height=”300” width=”300”}</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">input = to_tensor(img).unsqueeze(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 锐化卷积核</span></span><br><span class="line">kernel = torch.ones(<span class="number">3</span>, <span class="number">3</span>) / <span class="number">-9</span></span><br><span class="line">kernel[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">conv = nn.Conv2d(in_channels=<span class="number">3</span>,out_channels=<span class="number">3</span>,kernel_size=(<span class="number">3</span>, <span class="number">3</span>),stride=<span class="number">1</span>, bias=<span class="keyword">False</span>)</span><br><span class="line">conv.weight.data = kernel.expand_as(conv.weight.data)</span><br><span class="line"></span><br><span class="line">out = conv(input)</span><br><span class="line">out = to_pil(out.data.squeeze(<span class="number">0</span>))</span><br><span class="line">out.show()</span><br></pre></td></tr></table></figure>
+<p>程序输出:</p>
+<div align="center"><img src="/2018/11/03/pytorch-torch-nn/p2.png" alt="">{:height=”300” width=”300”}</div>
+
+<p>in:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pool = nn.AvgPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">print(list(pool.Parameters())) <span class="comment">#池化层无任何可学习参数</span></span><br><span class="line"><span class="comment"># out:</span></span><br><span class="line"><span class="comment"># []</span></span><br></pre></td></tr></table></figure></p>
+<p>in:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">out = pool(input)</span><br><span class="line">out = to_pil(out.data.squeeze(<span class="number">0</span>))</span><br></pre></td></tr></table></figure></p>
+<p>程序输出:</p>
+<div align="center"><img src="/2018/11/03/pytorch-torch-nn/p3.png" alt="">{:height=”300” width=”300”}</div>
+
+<p>除了卷积层和池化层，深度学习中还常用到下面几个层：</p>
+<ul>
+<li>Linear: 全连接层</li>
+<li>BatchNorm：批规范化层，分为1D、2D、3D。除了标准的BatchNorm之外，还有在风格迁移中常用到的InstanceNorm层。</li>
+<li>Dropout：dropout层，用来防止过拟合，同样分为1D、2D、3D。</li>
+</ul>
+<h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><p>PyTorch实现了常见的激活函数，这些激活函数可以作为独立的layer使用。这里介绍最常用的激活函数ReLU。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReLU(x) = max(0, x)</span><br></pre></td></tr></table></figure></p>
+<p>in:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">relu = nn.ReLU(inplace=<span class="keyword">True</span>)</span><br><span class="line">input = torch.randn(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">print(input)</span><br><span class="line">output = relu(input)</span><br><span class="line">print(output)</span><br><span class="line"></span><br><span class="line"><span class="comment"># out:</span></span><br><span class="line"><span class="comment"># tensor([[ 1.8748,  1.0461, -0.8719],</span></span><br><span class="line"><span class="comment">#     [-0.0093,  1.4549, -1.1502]])</span></span><br><span class="line"><span class="comment"># tensor([[1.8748, 1.0461, 0.0000],</span></span><br><span class="line"><span class="comment">#     [0.0000, 1.4549, 0.0000]])</span></span><br></pre></td></tr></table></figure></p>
+<p>ReLU函数有一个inplace参数，如果设为True，就会把输出直接覆盖到输入中，这样能够节省内存/显存，但是除非你明确地知道自己在做什么，否则一般不要使用inplace操作。</p>
+<p>在上面的例子中，都是将每一层的输出直接作为下一层的输入，这种网络称为前馈传播网络(Feedforward Neural Network)。对于此类网络，如果每次都写复杂的forward函数会很麻烦，有两种简化方式，ModuleList和Sequential。其中Sequential是一个特殊的Module，它包含几个子module，前向传播时会将输入一层接着一层地传递给下去。ModuleList也是一个特殊的Module，可以包含几个字module，可以像用list一样去使用它，但不能直接把输入传给ModuleList。下面举例说明</p>
+<p>in:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">net1 = nn.Sequential()</span><br><span class="line">net1.add_module(<span class="string">'conv'</span>, nn.Conv2d(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">net1.add_module(<span class="string">'batchnorm'</span>, nn.BatchNorm2d(<span class="number">3</span>))</span><br><span class="line">net1.add_module(<span class="string">'activation_layer'</span>, nn.ReLU())</span><br><span class="line"></span><br><span class="line">net2 = nn.Sequential(</span><br><span class="line">        nn.Conv2d(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>),</span><br><span class="line">        nn.BatchNorm2d(<span class="number">3</span>),</span><br><span class="line">        nn.ReLU()</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line">net3 = nn.Sequential(OrderedDict([</span><br><span class="line">            (<span class="string">'conv1'</span>, nn.Conv2d(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>)),</span><br><span class="line">            (<span class="string">'bn1'</span>, nn.BatchNorm2d(<span class="number">3</span>)),</span><br><span class="line">            (<span class="string">'relu1'</span>, nn.ReLU())</span><br><span class="line">    ]))</span><br><span class="line"></span><br><span class="line">print(<span class="string">'net1:'</span>, net1)</span><br><span class="line">print(<span class="string">'net2:'</span>, net2)</span><br><span class="line">print(<span class="string">'net3:'</span>, net3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># out:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># net1: Sequential(</span></span><br><span class="line"><span class="comment">#   (conv): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))</span></span><br><span class="line"><span class="comment">#   (batchnorm): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)</span></span><br><span class="line"><span class="comment">#   (activation_layer): ReLU()</span></span><br><span class="line"><span class="comment"># )</span></span><br><span class="line"><span class="comment"># net2: Sequential(</span></span><br><span class="line"><span class="comment">#   (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))</span></span><br><span class="line"><span class="comment">#   (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)</span></span><br><span class="line"><span class="comment">#   (2): ReLU()</span></span><br><span class="line"><span class="comment"># )</span></span><br><span class="line"><span class="comment"># net3: Sequential(</span></span><br><span class="line"><span class="comment">#   (conv1): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))</span></span><br><span class="line"><span class="comment">#   (bn1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)</span></span><br><span class="line"><span class="comment">#   (relu1): ReLU()</span></span><br><span class="line"><span class="comment"># )</span></span><br></pre></td></tr></table></figure></p>
+<p>可以根据名字或是序号取出子module<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print(net1.conv)</span><br><span class="line">print(net2[<span class="number">0</span>])</span><br><span class="line">print(net3.conv1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))</span></span><br><span class="line"><span class="comment"># Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))</span></span><br><span class="line"><span class="comment"># Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+	
+	
+	
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/15/2018_9_15_An_introduction_to_Octave/" rel="next" title="An introduction to Octave">
+                <i class="fa fa-chevron-left"></i> An introduction to Octave
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head_icon.jpg"
+                alt="H4mster" />
+            
+              <p class="site-author-name" itemprop="name">H4mster</p>
+              <p class="site-description motion-element" itemprop="description">我 莫得感情</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/h4mster" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:h4mster@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://southseast.cc/" title="Southseast" target="_blank">Southseast</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://she1don.cn/" title="Sheldon" target="_blank">Sheldon</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.codemonster.cn/" title="Xishir" target="_blank">Xishir</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://anonym1ty.cn/" title="豆浆油条" target="_blank">豆浆油条</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ju5tw4nty0u.top/" title="ju5tw4nty0u" target="_blank">ju5tw4nty0u</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://musicer.top/" title="Musicer" target="_blank">Musicer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://white.xmutsec.com/" title="White" target="_blank">White</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pytorch学习-1-—神经网络工具箱nn"><span class="nav-number">1.</span> <span class="nav-text">pytorch学习(1)—神经网络工具箱nn</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-nn-Moudle"><span class="nav-number">1.0.1.</span> <span class="nav-text">0x00 nn.Moudle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-常用的神经网络层"><span class="nav-number">1.0.2.</span> <span class="nav-text">0x01 常用的神经网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像相关层"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">图像相关层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#激活函数"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">激活函数</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">H4mster</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">9.9k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("PgPtMMlotOFQNqNaaMdMmFoT-gzGzoHsz", "QB7PSiumy3tPjBTj8zsJ5KVl");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
