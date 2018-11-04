@@ -79,7 +79,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python,deepLearning," />
 
 
 
@@ -90,17 +90,18 @@
 
 
 
-<meta name="description" content="H4mster">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://h4mster.github.io/tags/index.html">
+<meta name="description" content="0x00 序在训练神经网络的过程中需要用到很多工具，其中最重要的三部分是数据、可视化和GPU加速。本篇主要介绍PyTorch在这几方面常用的工具，合理使用这些工具能够极大地提高编码效率 0x01 数据处理在解决深度学习问题的过程中，往往需要花费大量精力去处理数据，包括图像文本、语音或其他二进制数据等。数据的处理对于训练神经网络来说非常重要，良好的数据处理不仅会加速模型训练，也会提高模型效果。考虑到">
+<meta name="keywords" content="python,deepLearning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyTorch学习(2)---PyTorch中常用的工具">
+<meta property="og:url" content="http://h4mster.github.io/2018/11/05/pytorch-commonly-used-tools/index.html">
 <meta property="og:site_name" content="H4mster&#39;s blog">
-<meta property="og:description" content="H4mster">
+<meta property="og:description" content="0x00 序在训练神经网络的过程中需要用到很多工具，其中最重要的三部分是数据、可视化和GPU加速。本篇主要介绍PyTorch在这几方面常用的工具，合理使用这些工具能够极大地提高编码效率 0x01 数据处理在解决深度学习问题的过程中，往往需要花费大量精力去处理数据，包括图像文本、语音或其他二进制数据等。数据的处理对于训练神经网络来说非常重要，良好的数据处理不仅会加速模型训练，也会提高模型效果。考虑到">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-14T08:07:18.902Z">
+<meta property="og:updated_time" content="2018-11-04T19:54:37.474Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="H4mster">
+<meta name="twitter:title" content="PyTorch学习(2)---PyTorch中常用的工具">
+<meta name="twitter:description" content="0x00 序在训练神经网络的过程中需要用到很多工具，其中最重要的三部分是数据、可视化和GPU加速。本篇主要介绍PyTorch在这几方面常用的工具，合理使用这些工具能够极大地提高编码效率 0x01 数据处理在解决深度学习问题的过程中，往往需要花费大量精力去处理数据，包括图像文本、语音或其他二进制数据等。数据的处理对于训练神经网络来说非常重要，良好的数据处理不仅会加速模型训练，也会提高模型效果。考虑到">
 
 
 
@@ -130,14 +131,14 @@
 
 
 
-  <link rel="canonical" href="http://h4mster.github.io/tags/"/>
+  <link rel="canonical" href="http://h4mster.github.io/2018/11/05/pytorch-commonly-used-tools/"/>
 
 
 
 
 
 
-  <title>tags | H4mster's blog</title>
+  <title>PyTorch学习(2)---PyTorch中常用的工具 | H4mster's blog</title>
   
 
 
@@ -262,40 +263,213 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://h4mster.github.io/2018/11/05/pytorch-commonly-used-tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="H4mster">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="H4mster's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                3 tags in total
+          <h1 class="post-title" itemprop="name headline">PyTorch学习(2)---PyTorch中常用的工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-05T03:41:12+08:00">
+                2018-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/deepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">deepLearning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/05/pytorch-commonly-used-tools/" class="leancloud_visitors" data-flag-title="PyTorch学习(2)---PyTorch中常用的工具">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  326
+                </span>
+              
+
+              
+
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/WEB/" style="font-size: 12px; color: #ccc">WEB</a> <a href="/tags/deepLearning/" style="font-size: 30px; color: #111">deepLearning</a> <a href="/tags/python/" style="font-size: 30px; color: #111">python</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00 序"></a>0x00 序</h3><p>在训练神经网络的过程中需要用到很多工具，其中最重要的三部分是数据、可视化和GPU加速。本篇主要介绍PyTorch在这几方面常用的工具，合理使用这些工具能够极大地提高编码效率</p>
+<h3 id="0x01-数据处理"><a href="#0x01-数据处理" class="headerlink" title="0x01 数据处理"></a>0x01 数据处理</h3><p>在解决深度学习问题的过程中，往往需要花费大量精力去处理数据，包括图像文本、语音或其他二进制数据等。数据的处理对于训练神经网络来说非常重要，良好的数据处理不仅会加速模型训练，也会提高模型效果。考虑到这一点，PyTorch提供了几个高效便捷的工具，以便使用者进行数据处理或增强等操作，同时可以通过并行化加速数据加载。</p>
+<p>在PyTorch中，数据加载可通过自定义的数据集对象实现。数据集对象被抽象为Dataset类，实现自定义的数据集需要继承Dataset类，实现自定义的数据集需要继承Dataset，并实现两个Python魔法方法。</p>
+<div>· <strong>getitem</strong>: 返回一条数据或一个样本。obj[index]等价于obj.<strong>getitem</strong>(index)</div><br><div>· <strong>len</strong>: 返回样本的数量。len(obj)等价于obj.<strong>len</strong>()</div>
       
     </div>
     
     
     
+	
+	
+	
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/deepLearning/" rel="tag"><i class="fa fa-tag"></i> deepLearning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/03/pytorch-torch-nn/" rel="next" title="PyTorch学习(1)---神经网络工具箱nn">
+                <i class="fa fa-chevron-left"></i> PyTorch学习(1)---神经网络工具箱nn
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -333,8 +507,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -452,6 +635,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00 序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-数据处理"><span class="nav-number">2.</span> <span class="nav-text">0x01 数据处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
