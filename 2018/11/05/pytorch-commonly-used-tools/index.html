@@ -100,7 +100,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/05/pytorch-commonly-used-tools/p1.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/05/pytorch-commonly-used-tools/p2.png">
-<meta property="og:updated_time" content="2018-11-05T13:06:41.444Z">
+<meta property="og:updated_time" content="2018-11-05T13:35:06.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch学习(2)---PyTorch中常用的工具">
 <meta name="twitter:description" content="0x00 序在训练神经网络的过程中需要用到很多工具，其中最重要的三部分是数据、可视化和GPU加速。本篇主要介绍PyTorch在这几方面常用的工具，合理使用这些工具能够极大地提高编码效率 0x01 数据处理在解决深度学习问题的过程中，往往需要花费大量精力去处理数据，包括图像文本、语音或其他二进制数据等。数据的处理对于训练神经网络来说非常重要，良好的数据处理不仅会加速模型训练，也会提高模型效果。考虑到">
@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  3,559
+                  4,092
                 </span>
               
 
@@ -480,7 +480,17 @@ Dataset只负责数据的抽象，一次调用__getitem__只返回一个样本�
 <li>dataset中应尽量之包含只读对象，避免修改任何可变对象。</li>
 </ul>
 第一点是因为多进程会并行地调用<strong>getitem</strong>函数，将负载高的放在<strong>getitem</strong>函数中能够实现并行加速。第二点是因为dataloader私用多进程加载，如果在Dataset中使用了可变对象，可能会有意想不到的冲突。在多线程/多进程中，修改一个可变对象需要加锁，但是dataloader的设计使其变得很难加锁(在实际使用中也应尽量避免锁的存在)，因此最好避免在dataset中修改可变对象。下面就是一个不好的例子，在多进程处理中使用self.num可能与预期不符，这种情况不会报错，因此很难发现。如果一定要修改可变对象，建议用Python标准库Queue中的相关数据结构。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BadDataset</span><span class="params">(Dataset)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.datas = range(<span class="number">100</span>)</span><br><span class="line">        self.num = <span class="number">0</span> <span class="comment">#取数据的次数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">()</span>:</span></span><br><span class="line">        self.num += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self.datas[index]</span><br></pre></td></tr></table></figure>
-<p>PyTorch中还单独提供了一个sampler模块，用来对数据进行采样。常用的有随机采样器RandomSampler，当dataloader的shuffle参数为True时，系统会自动调用这个采样器。默认从采样器是SequentialSampler，它会按顺序一个一个进行采样。这里介绍另外一个很有用的采样方法：WeightedRandomSampler，它会根据每个样本的权重选取数据，在样本比例不均衡的问题中，可用它进行重采样。<br>构建WeightRandomSampler时提供两个参数：每个样本的权重weights、共选取的样本总数num_samples，以及一个可选参数replacement。权重越大的样本被选中的概率越大，待选取的样本数目一般小于全部的样本数目。replacement用于指定是否可以重复选取某一个样本，默认为True，即允许在一个epoch中重复采样某一个数据。如果设为False，则当某一类样本被全部选取完，但其样本数目仍未达到num_samples时，sampler将不会再从该类中选取数据，此时可能导致weights参数失效。</p>
+<p>PyTorch中还单独提供了一个sampler模块，用来对数据进行采样。常用的有随机采样器RandomSampler，当dataloader的shuffle参数为True时，系统会自动调用这个采样器。默认从采样器是SequentialSampler，它会按顺序一个一个进行采样。这里介绍另外一个很有用的采样方法：WeightedRandomSampler，它会根据每个样本的权重选取数据，在样本比例不均衡的问题中，可用它进行重采样。<br>构建WeightRandomSampler时提供两个参数：每个样本的权重weights、共选取的样本总数num_samples，以及一个可选参数replacement。权重越大的样本被选中的概率越大，待选取的样本数目一般小于全部的样本数目。replacement用于指定是否可以重复选取某一个样本，默认为True，即允许在一个epoch中重复采样某一个数据。如果设为False，则当某一类样本被全部选取完，但其样本数目仍未达到num_samples时，sampler将不会再从该类中选取数据，此时可能导致weights参数失效。下面举例说明。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># train是猫狗图片混合的文件夹</span></span><br><span class="line">dataset = DogCat(<span class="string">'data/train/'</span>, transform=transform)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 狗的图片被取出的概率是猫的两倍</span></span><br><span class="line"><span class="comment"># 两类图片被取出的概率和weights的绝对大小无关，只和比值有关</span></span><br><span class="line">weights = [<span class="number">2</span> <span class="keyword">if</span> label == <span class="number">1</span> <span class="keyword">else</span> <span class="number">1</span> <span class="keyword">for</span> data, label <span class="keyword">in</span> dataset]</span><br><span class="line">print(weights)</span><br><span class="line"><span class="comment"># print:</span></span><br><span class="line"><span class="comment"># [2, 2, 1, 1, 1, 1, 2, 2]</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.data.sampler <span class="keyword">import</span> WeightedRandomSampler</span><br><span class="line"></span><br><span class="line">sampler = WeightedRandomSampler(weights,</span><br><span class="line">                                num_samples=<span class="number">9</span>,</span><br><span class="line">                                replacement=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">dataloader = DataLoader(datset,</span><br><span class="line">                        batch_size,</span><br><span class="line">                        sampler=sampler)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>  datas, labels <span class="keyword">in</span> dataloader:</span><br><span class="line">    print(labels.tolist())</span><br><span class="line"></span><br><span class="line"><span class="comment"># print:</span></span><br><span class="line"><span class="comment"># [1, 1, 1]</span></span><br><span class="line"><span class="comment"># [0, 1, 1]</span></span><br><span class="line"><span class="comment"># [1, 0, 1]</span></span><br></pre></td></tr></table></figure>
+<p>可见猫狗样本的比例为1:2，另外一共只有8个样本，却返回了9个，说明有样本被重复返回，这就是replacement的作用，如果去掉就只会返回8个参数了，这样就失去了weight参数的意义。</p>
+<h3 id="0x02-计算机视觉工具包-torchvision"><a href="#0x02-计算机视觉工具包-torchvision" class="headerlink" title="0x02 计算机视觉工具包:torchvision"></a>0x02 计算机视觉工具包:torchvision</h3><p>计算机视觉是深度学习中最重要的一类应用，为了方便研究者使用，PyTorch团队专门开发了一个视觉工具包torchvision，这个包独立于PyTorch，这里做一个系统性的介绍。<br>torchvision主要包含以下三个部分。</p>
+<ul>
+<li>models: 提供深度学习中各种经典网络的网络结构以及预训练好的模型，包括AlexNet、VGG系列、ResNet系列、Inception系列等。</li>
+<li>datasets: 提供常用的数据集加载，设计上都是继承torch.utils.data.Dataset，主要包括MNIST、CIFAR10/100、ImageNet、COCO等。</li>
+<li>transforms: 提供常用的数据预处理操作，主要包括对Tensor和PIL Image对象的操作<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="comment"># 加载预训练好的模型，如果不存在会下载</span></span><br><span class="line"><span class="comment"># 预训练好的模型保存在~/.torch/models/下</span></span><br><span class="line">resnet34 = models.resnet34(pretrained=<span class="keyword">True</span>, num_classes=<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改最后的全连接层为10分类问题(默认是ImageNet上的1000分类)</span></span><br><span class="line">resnet34.fc = nn.Linear(<span class="number">512</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets</span><br><span class="line"><span class="comment"># 指定数据集路径为data，如果数据集不存在则进行下载</span></span><br><span class="line"><span class="comment"># 通过train=False获取测试集</span></span><br><span class="line">dataset = datasets.MNIST(<span class="string">'data/'</span>, download=<span class="keyword">True</span>, train=<span class="keyword">False</span>, transform=transform)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -719,7 +729,7 @@ Dataset只负责数据的抽象，一次调用__getitem__只返回一个样本�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00 序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-数据处理"><span class="nav-number">2.</span> <span class="nav-text">0x01 数据处理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00 序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-数据处理"><span class="nav-number">2.</span> <span class="nav-text">0x01 数据处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-计算机视觉工具包-torchvision"><span class="nav-number">3.</span> <span class="nav-text">0x02 计算机视觉工具包:torchvision</span></a></li></ol></div>
             
 
           </div>
@@ -753,7 +763,7 @@ Dataset只负责数据的抽象，一次调用__getitem__只返回一个样本�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.9k</span>
+    <span title="Site words total count">16.4k</span>
   
 </div>
 
