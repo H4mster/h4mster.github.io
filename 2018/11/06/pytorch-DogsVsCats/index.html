@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="0x00 序结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能  模型定义 数据处理和加载 训练模型(Train &amp;amp; Validate) 训练过程的可视化 测试(Test/Inference)  0x01">
+<meta name="description" content="0x00 序结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能:  模型定义 数据处理和加载 训练模型(Train &amp;amp; Validate) 训练过程的可视化 测试(Test/Inference)  除了实现功能外，程序还应该满足以下几个要求: 模型需要具有高度可配置性，便于调整参数、修改模型和反复 实验；代码应具有良好的组织结构；代码应具有良好的说明，使他人能够理解。">
 <meta name="keywords" content="python,deepLearning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PyTorch学习(3)---DogsVsCats">
 <meta property="og:url" content="http://h4mster.github.io/2018/11/06/pytorch-DogsVsCats/index.html">
 <meta property="og:site_name" content="H4mster&#39;s blog">
-<meta property="og:description" content="0x00 序结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能  模型定义 数据处理和加载 训练模型(Train &amp;amp; Validate) 训练过程的可视化 测试(Test/Inference)  0x01">
+<meta property="og:description" content="0x00 序结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能:  模型定义 数据处理和加载 训练模型(Train &amp;amp; Validate) 训练过程的可视化 测试(Test/Inference)  除了实现功能外，程序还应该满足以下几个要求: 模型需要具有高度可配置性，便于调整参数、修改模型和反复 实验；代码应具有良好的组织结构；代码应具有良好的说明，使他人能够理解。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-06T07:46:02.865Z">
+<meta property="og:updated_time" content="2018-11-06T07:51:09.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch学习(3)---DogsVsCats">
-<meta name="twitter:description" content="0x00 序结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能  模型定义 数据处理和加载 训练模型(Train &amp;amp; Validate) 训练过程的可视化 测试(Test/Inference)  0x01">
+<meta name="twitter:description" content="0x00 序结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能:  模型定义 数据处理和加载 训练模型(Train &amp;amp; Validate) 训练过程的可视化 测试(Test/Inference)  除了实现功能外，程序还应该满足以下几个要求: 模型需要具有高度可配置性，便于调整参数、修改模型和反复 实验；代码应具有良好的组织结构；代码应具有良好的说明，使他人能够理解。">
 
 
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  66
+                  428
                 </span>
               
 
@@ -405,7 +405,7 @@
       
 
       
-        <h3 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00 序"></a>0x00 序</h3><p>结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能</p>
+        <h3 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00 序"></a>0x00 序</h3><p>结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能:</p>
 <ul>
 <li>模型定义</li>
 <li>数据处理和加载</li>
@@ -413,7 +413,25 @@
 <li>训练过程的可视化</li>
 <li>测试(Test/Inference)</li>
 </ul>
-<h3 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h3>
+<p>除了实现功能外，程序还应该满足以下几个要求: 模型需要具有高度可配置性，便于调整参数、修改模型和反复 实验；代码应具有良好的组织结构；代码应具有良好的说明，使他人能够理解。</p>
+<h3 id="0x01-文件组织架构"><a href="#0x01-文件组织架构" class="headerlink" title="0x01 文件组织架构"></a>0x01 文件组织架构</h3><p>程序最重要的三个功能如下:</p>
+<ul>
+<li>模型定义</li>
+<li>数据加载</li>
+<li>训练和测试</li>
+</ul>
+<p>下面是程序文件的组织结构:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">checkpoints/</span><br><span class="line">data/</span><br><span class="line">	__init__.py</span><br><span class="line">	dataset.py</span><br><span class="line">	get_data.sh</span><br><span class="line">models/</span><br><span class="line">	__init__.py</span><br><span class="line">	AlexNet.py</span><br><span class="line">	BasicModule.py</span><br><span class="line">	ResNet34.py</span><br><span class="line">utils/</span><br><span class="line">	__init__.py</span><br><span class="line">	visualize.py</span><br><span class="line">config.py</span><br><span class="line">main.py</span><br><span class="line">requirements.txt</span><br><span class="line">README.md</span><br></pre></td></tr></table></figure></p>
+<p>各文件的主要内容和作用如下</p>
+<ul>
+<li>checkpoints/: 用于保存训练好的模型，可使程序在异常退出后仍然能够重新载入模型，恢复训练。</li>
+<li>data/: 数据相关操作，包括数据预处理、dataset实现等</li>
+<li>models/: 模型定义，可以有多个模型，例如上面的AlexNet和ResNet34，一个模型对应一个文件</li>
+<li>utils/: 可能用到的工具函数，本次实验主要封装了一些可视化工具</li>
+<li>config.py: 配置文件，所有可配置的变量都集中在这个文件中，并提供默认值</li>
+<li>main.py: 主文件，训练和测试程序的人口，可以通过不同的命令来指定不同的操作和参数</li>
+<li>requirements.txt: 程序依赖的第三方库</li>
+</ul>
+
       
     </div>
     
@@ -651,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00 序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01"><span class="nav-number">2.</span> <span class="nav-text">0x01</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.</span> <span class="nav-text">0x00 序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-文件组织架构"><span class="nav-number">2.</span> <span class="nav-text">0x01 文件组织架构</span></a></li></ol></div>
             
 
           </div>
@@ -685,7 +703,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">17.0k</span>
+    <span title="Site words total count">17.4k</span>
   
 </div>
 
