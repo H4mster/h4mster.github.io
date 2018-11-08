@@ -100,7 +100,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/06/pytorch-DogsVsCats/p1.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/06/pytorch-DogsVsCats/p2.png">
-<meta property="og:updated_time" content="2018-11-06T18:07:11.173Z">
+<meta property="og:updated_time" content="2018-11-08T03:27:57.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch学习(3)---DogsVsCats">
 <meta name="twitter:description" content="0x00 序结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能:  模型定义 数据处理和加载 训练模型(Train &amp;amp; Validate) 训练过程的可视化 测试(Test/Inference)  除了实现功能外，程序还应该满足以下几个要求: 模型需要具有高度可配置性，便于调整参数、修改模型和反复 实验；代码应具有良好的组织结构；代码应具有良好的说明，使他人能够理解。">
@@ -445,7 +445,7 @@
 <p>在实际使用的时候，直接调用model.save()和model.load(opt.load_path)即可<br>其他自定义模型一般继承BasicModule，然后实现自己的模型。例如我在models/目录下实现了一个ResNet34，在models/__init__.py中代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .ResNet34 <span class="keyword">import</span> ResNet34</span><br></pre></td></tr></table></figure>
 <p>在主函数中就可以写成</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> ResNet34</span><br><span class="line">或</span><br><span class="line"><span class="keyword">import</span> models</span><br><span class="line">model = models.ResNet34()</span><br><span class="line">或</span><br><span class="line"><span class="keyword">import</span> models</span><br><span class="line">model = getattr(<span class="string">'models'</span>, ResNet34)()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> ResNet34</span><br><span class="line">或</span><br><span class="line"><span class="keyword">import</span> models</span><br><span class="line">model = models.ResNet34()</span><br><span class="line">或</span><br><span class="line"><span class="keyword">import</span> models</span><br><span class="line">model = getattr(<span class="string">'models'</span>, <span class="string">'ResNet34'</span>)()</span><br></pre></td></tr></table></figure>
 其中最后一种写法最关键，这意味着我们可以通过字符串直接指定使用的模型，而不必使用判断语句，也不必在每次新增模型后都修改代码。新增模型后只需要在models/__init__.py中加上from .new_module import new_module即可
 <p>注意以下几点:</p>
 <ul>
