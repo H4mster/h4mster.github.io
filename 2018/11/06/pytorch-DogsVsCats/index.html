@@ -100,7 +100,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/06/pytorch-DogsVsCats/p1.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/06/pytorch-DogsVsCats/p2.png">
-<meta property="og:updated_time" content="2018-11-08T03:27:57.865Z">
+<meta property="og:updated_time" content="2018-11-16T13:32:05.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch学习(3)---DogsVsCats">
 <meta name="twitter:description" content="0x00 序结合前两篇博客的内容，以猫狗二分类来做一个实战。程序将要实现以下几个功能:  模型定义 数据处理和加载 训练模型(Train &amp;amp; Validate) 训练过程的可视化 测试(Test/Inference)  除了实现功能外，程序还应该满足以下几个要求: 模型需要具有高度可配置性，便于调整参数、修改模型和反复 实验；代码应具有良好的组织结构；代码应具有良好的说明，使他人能够理解。">
@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  3,641
+                  3,650
                 </span>
               
 
@@ -492,7 +492,8 @@
 </ul>
 <p>训练函数的代码如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(**kwargs)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据命令行参数更新配置</span></span><br><span class="line">    opt.parse(kwargs)</span><br><span class="line">    vis = Visualizer(opt.env)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># step1: 模型</span></span><br><span class="line">    model = getattr(models, opt.model())()</span><br><span class="line">    <span class="keyword">if</span> opt.load_model_path:</span><br><span class="line">        model.load(opt.load_model_path)</span><br><span class="line">    <span class="keyword">if</span> opt.use_gpu: model.cuda(opt.gpu_id)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># step2: 数据</span></span><br><span class="line">    train_data = DogCat(opt.train_data_root, train=<span class="keyword">True</span>)</span><br><span class="line">    val_data = DogCat(opt.train_data_root, train=<span class="keyword">False</span>)</span><br><span class="line">    train_dataloader = DataLoader(train_data, opt.batch_size,</span><br><span class="line">                                shuffle=<span class="keyword">False</span>,</span><br><span class="line">                                num_workers=opt.num_workers)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># step3: 目标函数和优化器</span></span><br><span class="line">    criterion = torch.nn.CrossEntropyLoss() <span class="comment"># 交叉熵</span></span><br><span class="line">    lr = opt.lr</span><br><span class="line">    optimizer = torch.optim.Adam(model.parameters()</span><br><span class="line">                                lr = lr,</span><br><span class="line">                                weight_decay = opt.weight_decay)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># step4: 统计指标: 平滑处理后的损失，还有混淆矩阵</span></span><br><span class="line">    loss_meter = meter.AverageValueMeter()</span><br><span class="line">    confusion_matrix = meter.ConfusionMeter(<span class="number">2</span>)</span><br><span class="line">    previous_loss = <span class="number">1e100</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 训练</span></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(opt.max_epoch):</span><br><span class="line"></span><br><span class="line">        loss_meter.reset()</span><br><span class="line">        confusion_matrix.reset()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> ii, (data, label) <span class="keyword">in</span> enumerate(train_dataloader):</span><br><span class="line"></span><br><span class="line">            <span class="comment">#训练模型参数</span></span><br><span class="line">            input = data.cuda(opt.gpu_id)</span><br><span class="line">            target = label.cuda(opt.gpu_id)</span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            score = model(input)</span><br><span class="line">            loss = criterion(score, target)</span><br><span class="line">            loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line"></span><br><span class="line">            <span class="comment">#更新统计指标及可视化</span></span><br><span class="line">            loss_meter.add(loss.data[<span class="number">0</span>])</span><br><span class="line">            confusion_matrix.add(score.data, target.data)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ii % opt.print_freq == opt.print_freq<span class="number">-1</span>:</span><br><span class="line">                vis.plot(<span class="string">'loss'</span>, loss_meter.value()[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 如果需要的话，进入debug模式</span></span><br><span class="line">                <span class="keyword">if</span> os.path.exists(opt.debug_file):</span><br><span class="line">                    <span class="keyword">import</span> ipdb</span><br><span class="line">                    ipdb.set_trace()</span><br><span class="line"></span><br><span class="line">    model.save()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算验证集上的指标及可视化</span></span><br><span class="line">    val_cm, val_accuracy = val(model, val_dataloader)</span><br><span class="line">    vis.plot(<span class="string">'val_accuracy'</span>, val_accuracy)</span><br><span class="line">    vis.log(<span class="string">"epoch:&#123;epoch&#125;,lr:&#123;lr&#125;,loss:&#123;loss&#125;,train_cm:&#123;train_cm&#125;,val_cm:&#123;val_cm&#125;"</span>).format(</span><br><span class="line">        epoch = epoch,</span><br><span class="line">        loss = loss_meter.value[<span class="number">0</span>],</span><br><span class="line">        val_cm = str(val_cm.value),</span><br><span class="line">        train_cm = str(confusion_matrix.value()),</span><br><span class="line">        lr=lr)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果损失不再下降，则降低学习率</span></span><br><span class="line">    <span class="keyword">if</span> loss_meter.value[<span class="number">0</span>] &gt; previous_loss:</span><br><span class="line">        lr = lr * opt.lr_decay</span><br><span class="line">        <span class="keyword">for</span> param_group <span class="keyword">in</span> optimizer.param_groups:</span><br><span class="line">            param_group[<span class="string">'lr'</span>] = lr</span><br><span class="line"></span><br><span class="line">    previous_loss = loss_meter.value()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
 <p>这里用到了PyTorchNet(PyTorchNet由TorchNet迁移而来，提供了很多有用的工具)里的一个工具:meter。meter提供了一些轻量级的工具，用于帮助用户快速统计训练过程中的一些指标。AverageValueMeter能够计算所有数的平均差和标准差，可以用来统计一个epoch中损失的平均值。confusionmeter用来统计分类问题中的分类情况，是一个比准确率更详细的统计指标，相较于准确率等统计信息，混淆矩阵更加能够体现分类的结果，尤其是在样本比例不均衡的情况下，关于混淆矩阵，可以看网易云课堂上ng机器学习的”96.准确率和召回率的权衡”进行粗略的了解。</p>
-<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><h4 id="帮助函数"><a href="#帮助函数" class="headerlink" title="帮助函数"></a>帮助函数</h4><h3 id="0X08-使用"><a href="#0X08-使用" class="headerlink" title="0X08 使用"></a>0X08 使用</h3>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>这里用到一个小技巧</p>
+<h4 id="帮助函数"><a href="#帮助函数" class="headerlink" title="帮助函数"></a>帮助函数</h4><h3 id="0X08-使用"><a href="#0X08-使用" class="headerlink" title="0X08 使用"></a>0X08 使用</h3>
       
     </div>
     
@@ -535,6 +536,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/18/kaggle-titanic/" rel="prev" title="kaggle-titanic">
+                kaggle-titanic <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -621,7 +626,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -643,7 +648,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -764,7 +769,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">20.6k</span>
+    <span title="Site words total count">22.6k</span>
   
 </div>
 
