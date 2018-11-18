@@ -114,7 +114,8 @@
 <meta property="og:image" content="http://h4mster.github.io/2018/11/18/kaggle-titanic/p14.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/18/kaggle-titanic/p15.png">
 <meta property="og:image" content="http://h4mster.github.io/2018/11/18/kaggle-titanic/p16.png">
-<meta property="og:updated_time" content="2018-11-18T15:25:04.313Z">
+<meta property="og:image" content="http://h4mster.github.io/2018/11/18/kaggle-titanic/p17.png">
+<meta property="og:updated_time" content="2018-11-18T15:27:10.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kaggle-titanic">
 <meta name="twitter:description" content="0x00 序想去kaggle锻炼一下自己，先找些入门比赛做一做 0x01 所用库12345678910import pandas as pdimport numpy as npimport matplotlib.pyplot as pltimport seaborn as snsimport osimport warningswarnings.filterwarnings(&apos;ignore&apos;)%ma">
@@ -534,9 +535,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xgb = XGBClassifier()</span><br><span class="line">xgb.fit(x_train,y_train)</span><br><span class="line">y_pred = xgb.predict(x_test).astype(int)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">result = pd.DataFrame(&#123;<span class="string">'PassengerId'</span>: data_test[<span class="string">'PassengerId'</span>], <span class="string">"Survived"</span>: y_pred&#125;)</span><br><span class="line">result.to_cvs(<span class="string">'result.csv'</span>, index=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="0x07-END"><a href="#0x07-END" class="headerlink" title="0x07 END"></a>0x07 END</h3><p>嚯嚯嚯，交上去才67分，人都傻了，不过倒也在意料之中…毕竟第一次做嘛，感觉还是特征工程做的太糙了，没发掘出更好的特征，做这个花了挺长时间的，下次有空再改进吧。</p>
-<p><div align="center"><img src="/2018/11/18/kaggle-titanic/p15.png" alt=""></div><br>稍微修改了一些东西，78分了</p>
-<p><div align="center"><img src="/2018/11/18/kaggle-titanic/p16.png" alt=""></div><br>在性别和每个乘客与家人间的关系中找到了一些联系，排名上升到了Top12%</p>
+<div align="center"><img src="/2018/11/18/kaggle-titanic/p15.png" alt=""></div>
 
+<p>稍微修改了一些东西，78分了</p>
+<div align="center"><img src="/2018/11/18/kaggle-titanic/p16.png" alt=""></div>
+
+<p>在性别和每个乘客与家人间的关系中找到了一些联系，排名上升到了Top12%</p>
+<div align="center"><img src="/2018/11/18/kaggle-titanic/p17.png" alt=""></div>
       
     </div>
     
