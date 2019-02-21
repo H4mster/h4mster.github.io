@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="GUIGUI，即Graphic User Interface 图形用户界面 Hello Swingstep1. 简单的例子JFrame是GUI中的容器JButton是最常见的组件-按钮注: f.setVisible(true); 会对所有组件进行渲染，所以一定要放在最后面 1234567891011121314151617181920212223242526272829303132333435pa">
+<meta property="og:type" content="website">
+<meta property="og:title" content="java-GUI">
+<meta property="og:url" content="http://h4mster.github.io/java-GUI.html">
+<meta property="og:site_name" content="H4mster&#39;s blog">
+<meta property="og:description" content="GUIGUI，即Graphic User Interface 图形用户界面 Hello Swingstep1. 简单的例子JFrame是GUI中的容器JButton是最常见的组件-按钮注: f.setVisible(true); 会对所有组件进行渲染，所以一定要放在最后面 1234567891011121314151617181920212223242526272829303132333435pa">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-03T11:44:56.690Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java-GUI">
+<meta name="twitter:description" content="GUIGUI，即Graphic User Interface 图形用户界面 Hello Swingstep1. 简单的例子JFrame是GUI中的容器JButton是最常见的组件-按钮注: f.setVisible(true); 会对所有组件进行渲染，所以一定要放在最后面 1234567891011121314151617181920212223242526272829303132333435pa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://h4mster.github.io/java-GUI.html"/>
+
+
+
+
+
+
+  <title>java-GUI | H4mster's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">H4mster's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Life is a dick, sometimes it gets hard for no reason.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">java-GUI</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h3 id="GUI"><a href="#GUI" class="headerlink" title="GUI"></a>GUI</h3><p>GUI，即Graphic User Interface 图形用户界面</p>
+<h4 id="Hello-Swing"><a href="#Hello-Swing" class="headerlink" title="Hello Swing"></a>Hello Swing</h4><h5 id="step1-简单的例子"><a href="#step1-简单的例子" class="headerlink" title="step1. 简单的例子"></a>step1. 简单的例子</h5><p>JFrame是GUI中的容器<br>JButton是最常见的组件-按钮<br>注: f.setVisible(true); 会对所有组件进行渲染，所以一定要放在最后面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JLabel;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 主窗体</span></span><br><span class="line">        JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"LoL"</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 主窗体设置大小</span></span><br><span class="line">        f.setSize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 主窗体设置位置</span></span><br><span class="line">        f.setLocation(<span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 主窗体中的组件设置为绝对定位</span></span><br><span class="line">        f.setLayout(<span class="keyword">null</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 按钮组件</span></span><br><span class="line">        JButton b = <span class="keyword">new</span> JButton(<span class="string">"一键秒对方基地挂"</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 同时设置组件的大小和位置</span></span><br><span class="line">        b.setBounds(<span class="number">50</span>, <span class="number">50</span>, <span class="number">280</span>, <span class="number">30</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 把按钮加入到主窗体中</span></span><br><span class="line">        f.add(b);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 关闭窗体的时候，退出程序</span></span><br><span class="line">        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">        <span class="comment">// 让窗体变得可见</span></span><br><span class="line">        f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="step2-在上次关闭的位置启动窗口"><a href="#step2-在上次关闭的位置启动窗口" class="headerlink" title="step2. 在上次关闭的位置启动窗口"></a>step2. 在上次关闭的位置启动窗口</h5><p>启动一个线程，每个100毫秒读取当前的位置信息，保存在文件中，比如location.txt文件。<br>启动的时候，从这个文件中读取位置信息，如果是空的，就使用默认位置，如果不是空的，就把位置信息设置在窗口上。<br>读取位置信息的办法： f.getX() 读取横坐标信息，f.getY()读取纵坐标信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.awt.Point;</span><br><span class="line"><span class="keyword">import</span> java.io.DataInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.imageio.IIOException;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JLabel;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 主窗体</span></span><br><span class="line">        JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"LoL"</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 主窗体设置大小</span></span><br><span class="line">        f.setSize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 主窗体设置位置</span></span><br><span class="line">        Point p = getPointFromLocationFile();</span><br><span class="line">        f.setLocation(p.x, p.y);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 主窗体中的组件设置为绝对定位</span></span><br><span class="line">        f.setLayout(<span class="keyword">null</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 按钮组件</span></span><br><span class="line">        JButton b = <span class="keyword">new</span> JButton(<span class="string">"一键秒对方基地挂"</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 同时设置组件的大小和位置</span></span><br><span class="line">        b.setBounds(<span class="number">50</span>, <span class="number">50</span>, <span class="number">280</span>, <span class="number">30</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 把按钮加入到主窗体中</span></span><br><span class="line">        f.add(b);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 关闭窗体的时候，退出程序</span></span><br><span class="line">        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 让窗体变得可见</span></span><br><span class="line">        f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 保存窗体位置信息</span></span><br><span class="line">        <span class="keyword">new</span> SavingPositionThread(f).start();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> x;</span><br><span class="line">    	<span class="keyword">int</span> y;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Point <span class="title">getPointFromLocationFile</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	File file = <span class="keyword">new</span> File(<span class="string">"./position.txt"</span>);</span><br><span class="line">    	Point p = <span class="keyword">null</span>;</span><br><span class="line">    	<span class="keyword">try</span> (FileInputStream fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">    			DataInputStream dis = <span class="keyword">new</span> DataInputStream(fis);) &#123;</span><br><span class="line">    		<span class="keyword">int</span> x = dis.readInt();</span><br><span class="line">    		<span class="keyword">int</span> y = dis.readInt();</span><br><span class="line">    		p = <span class="keyword">new</span> Point();</span><br><span class="line">    		p.x = x;</span><br><span class="line">    		p.y = y;</span><br><span class="line">    	&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    		e.printStackTrace();</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.DataOutput;</span><br><span class="line"><span class="keyword">import</span> java.io.DataOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SavingPositionThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> File file = <span class="keyword">new</span> File(<span class="string">"./position.txt"</span>);</span><br><span class="line">	<span class="keyword">private</span> JFrame f;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SavingPositionThread</span><span class="params">(JFrame f)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.f = f;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> x = f.getX();</span><br><span class="line">			<span class="keyword">int</span> y = f.getY();</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">try</span> (FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">					DataOutputStream dos = <span class="keyword">new</span> DataOutputStream(fos);) &#123; </span><br><span class="line">				dos.writeInt(x);</span><br><span class="line">				dos.writeInt(y);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">100</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="时间监听"><a href="#时间监听" class="headerlink" title="时间监听"></a>时间监听</h4><table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ActionListener</td>
+<td>按钮监听</td>
+</tr>
+<tr>
+<td>KeyListener</td>
+<td>键盘监听</td>
+</tr>
+<tr>
+<td>MouseListener</td>
+<td>鼠标监听</td>
+</tr>
+<tr>
+<td>Adapter</td>
+<td>适配器</td>
+</tr>
+</tbody>
+</table>
+<h5 id="step1-按钮监听"><a href="#step1-按钮监听" class="headerlink" title="step1. 按钮监听"></a>step1. 按钮监听</h5><p>创建一个匿名类实现 <em>ActionListener</em> 接口，当按钮被点击时， <em>actionPerformed</em> 方法就会被调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionListener;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> javax.swing.ImageIcon;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JLabel;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">        JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"LoL"</span>);</span><br><span class="line">        f.setSize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line">        f.setLocation(<span class="number">580</span>, <span class="number">200</span>);</span><br><span class="line">        f.setLayout(<span class="keyword">null</span>);</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">final</span> JLabel l = <span class="keyword">new</span> JLabel();</span><br><span class="line">  </span><br><span class="line">        ImageIcon i = <span class="keyword">new</span> ImageIcon(<span class="string">"D:/eclipse-workspace/Pratice_1/imgs/shana.png"</span>);</span><br><span class="line">        l.setIcon(i);</span><br><span class="line">        l.setBounds(<span class="number">50</span>, <span class="number">50</span>, i.getIconWidth(), i.getIconHeight());</span><br><span class="line">  </span><br><span class="line">        JButton b = <span class="keyword">new</span> JButton(<span class="string">"隐藏图片"</span>);</span><br><span class="line">        b.setBounds(<span class="number">150</span>, <span class="number">200</span>, <span class="number">100</span>, <span class="number">30</span>);</span><br><span class="line">  </span><br><span class="line">        <span class="comment">// 给按钮 增加 监听</span></span><br><span class="line">        b.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">  </span><br><span class="line">            <span class="comment">// 当按钮被点击时，就会触发 ActionEvent事件</span></span><br><span class="line">            <span class="comment">// actionPerformed 方法就会被执行</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">                l.setVisible(<span class="keyword">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">  </span><br><span class="line">        f.add(l);</span><br><span class="line">        f.add(b);</span><br><span class="line">        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">  </span><br><span class="line">        f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="step2-键盘监听"><a href="#step2-键盘监听" class="headerlink" title="step2. 键盘监听"></a>step2. 键盘监听</h5><p>键盘监听器: <em>KeyListener</em></p>
+<p><em>keyPressed</em> 代表 键被按下</p>
+<p><em>keyReleased</em> 代表 键被弹</p>
+<p><em>keyTyped</em> 代表 一个按下弹起的组合动作</p>
+<p><em>KeyEvent.getKeyCode()</em> 可以获取当前按下了哪个键</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.awt.event.KeyEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.KeyListener;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> javax.swing.ImageIcon;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JLabel;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">        JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"LoL"</span>);</span><br><span class="line">        f.setSize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line">        f.setLocation(<span class="number">580</span>, <span class="number">200</span>);</span><br><span class="line">        f.setLayout(<span class="keyword">null</span>);</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">final</span> JLabel l = <span class="keyword">new</span> JLabel();</span><br><span class="line">  </span><br><span class="line">        ImageIcon i = <span class="keyword">new</span> ImageIcon(<span class="string">"D:/eclipse-workspace/Pratice_1/imgs/shana.png"</span>);</span><br><span class="line">        l.setIcon(i);</span><br><span class="line">        l.setBounds(<span class="number">50</span>, <span class="number">50</span>, i.getIconWidth(), i.getIconHeight());</span><br><span class="line">  </span><br><span class="line">        <span class="comment">// 增加键盘监听</span></span><br><span class="line">        f.addKeyListener(<span class="keyword">new</span> KeyListener() &#123;</span><br><span class="line">  </span><br><span class="line">            <span class="comment">// 键被弹起</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">keyReleased</span><span class="params">(KeyEvent e)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">                <span class="comment">// 39代表按下了 “右键”</span></span><br><span class="line">                <span class="keyword">if</span> (e.getKeyCode() == <span class="number">39</span>) &#123;</span><br><span class="line">                    <span class="comment">// 图片向右移动 （y坐标不变，x坐标增加）</span></span><br><span class="line">                    l.setLocation(l.getX() + <span class="number">10</span>, l.getY());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">  </span><br><span class="line">            <span class="comment">//键被按下</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">keyPressed</span><span class="params">(KeyEvent e)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">  </span><br><span class="line">            &#125;</span><br><span class="line">  </span><br><span class="line">            <span class="comment">// 一个按下弹起的组合动作</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">keyTyped</span><span class="params">(KeyEvent e)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">  </span><br><span class="line">        f.add(l);</span><br><span class="line">  </span><br><span class="line">        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">  </span><br><span class="line">        f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="step3-鼠标监听"><a href="#step3-鼠标监听" class="headerlink" title="step3. 鼠标监听"></a>step3. 鼠标监听</h5><p><em>MouseListener</em> 鼠标监听器</p>
+<p><em>mouseReleased</em> 鼠标释放</p>
+<p><em>mousePressed</em> 鼠标按下</p>
+<p><em>mouseExited</em> 鼠标退出</p>
+<p><em>mouseEntered</em> 鼠标进入</p>
+<p><em>mouseClicked</em> 鼠标点击<br>在本例中，使用<em>mouseEntered</em>，当鼠标进入图片的时候，图片就移动位置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseListener;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> javax.swing.ImageIcon;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JLabel;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">final</span> JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"LoL"</span>);</span><br><span class="line">        f.setSize(<span class="number">800</span>, <span class="number">600</span>);</span><br><span class="line">        f.setLocationRelativeTo(<span class="keyword">null</span>);</span><br><span class="line">        f.setLayout(<span class="keyword">null</span>);</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">final</span> JLabel l = <span class="keyword">new</span> JLabel();</span><br><span class="line">        ImageIcon i = <span class="keyword">new</span> ImageIcon(<span class="string">"D:/eclipse-workspace/Pratice_1/imgs/shana_heiheihei.png"</span>);</span><br><span class="line">        l.setIcon(i);</span><br><span class="line">        l.setBounds(<span class="number">375</span>, <span class="number">275</span>, i.getIconWidth(), i.getIconHeight());</span><br><span class="line">  </span><br><span class="line">        f.add(l);</span><br><span class="line">  </span><br><span class="line">        l.addMouseListener(<span class="keyword">new</span> MouseListener() &#123;</span><br><span class="line">  </span><br><span class="line">            <span class="comment">// 释放鼠标</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseReleased</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">  </span><br><span class="line">            &#125;</span><br><span class="line">  </span><br><span class="line">            <span class="comment">// 按下鼠标</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mousePressed</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">  </span><br><span class="line">            &#125;</span><br><span class="line">  </span><br><span class="line">            <span class="comment">// 鼠标退出</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseExited</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">  </span><br><span class="line">            &#125;</span><br><span class="line">  </span><br><span class="line">            <span class="comment">// 鼠标进入</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseEntered</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">                Random r = <span class="keyword">new</span> Random();</span><br><span class="line">  </span><br><span class="line">                <span class="keyword">int</span> x = r.nextInt(f.getWidth() - l.getWidth());</span><br><span class="line">                <span class="keyword">int</span> y = r.nextInt(f.getHeight() - l.getHeight());</span><br><span class="line">  </span><br><span class="line">                l.setLocation(x, y);</span><br><span class="line">  </span><br><span class="line">            &#125;</span><br><span class="line">  </span><br><span class="line">            <span class="comment">// 按下释放组合动作为点击鼠标</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseClicked</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">  </span><br><span class="line">        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">  </span><br><span class="line">        f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="step4-适配器"><a href="#step4-适配器" class="headerlink" title="step4. 适配器"></a>step4. 适配器</h5><p>一般来说写监听器的时候，会实现上述的三种接口，但是实际上很多方法都没有用到，这时候用适配器就行了，适配器是一个抽象类，继承了监听器的接口。</p>
+<table>
+<thead>
+<tr>
+<th>Sr.NO.</th>
+<th>适配器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>FocusAdapter</td>
+<td>接收焦点事件的抽象适配器类</td>
+</tr>
+<tr>
+<td>2</td>
+<td>KeyAdapter</td>
+<td>接收按键事件的抽象适配器类</td>
+</tr>
+<tr>
+<td>3</td>
+<td>MouseAdapter</td>
+<td>接收鼠标事件的抽象适配器类</td>
+</tr>
+<tr>
+<td>4</td>
+<td>MouseMotionAdapter</td>
+<td>接收鼠标移动事件的抽象适配器类</td>
+</tr>
+<tr>
+<td>5</td>
+<td>WindowAdapter</td>
+<td>接收窗口事件的抽象适配器类</td>
+</tr>
+</tbody>
+</table>
+<h4 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h4><p>java的图形界面中，容器是用来存放 按钮，输入框等组件的。<br>窗体型容器有两个，一个是JFrame,一个是JDialog</p>
+<h5 id="step1-JFrame"><a href="#step1-JFrame" class="headerlink" title="step1. JFrame"></a>step1. JFrame</h5><p>JFrame是最常用的窗体型容器，默认情况下，在右上角有最大化和最小化按钮。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//普通的窗体，带最大和最小化按钮</span></span><br><span class="line">        JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"LoL"</span>);</span><br><span class="line">        f.setSize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line">        f.setLocation(<span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line">        f.setLayout(<span class="keyword">null</span>);</span><br><span class="line">        JButton b = <span class="keyword">new</span> JButton(<span class="string">"一键秒对方基地挂"</span>);</span><br><span class="line">        b.setBounds(<span class="number">50</span>, <span class="number">50</span>, <span class="number">280</span>, <span class="number">30</span>);</span><br><span class="line"> </span><br><span class="line">        f.add(b);</span><br><span class="line">        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line"> </span><br><span class="line">        f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="step2-JDialog"><a href="#step2-JDialog" class="headerlink" title="step2. JDialog"></a>step2. JDialog</h5><p>JDialog也是窗体型容器，右上角没有最大和最小化按钮</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JDialog;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//普通的窗体，带最大和最小化按钮，而对话框却不带</span></span><br><span class="line">        JDialog d = <span class="keyword">new</span> JDialog();</span><br><span class="line">        d.setTitle(<span class="string">"LOL"</span>);</span><br><span class="line">        d.setSize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line">        d.setLocation(<span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line">        d.setLayout(<span class="keyword">null</span>);</span><br><span class="line">        JButton b = <span class="keyword">new</span> JButton(<span class="string">"一键秒对方基地挂"</span>);</span><br><span class="line">        b.setBounds(<span class="number">50</span>, <span class="number">50</span>, <span class="number">280</span>, <span class="number">30</span>);</span><br><span class="line"> </span><br><span class="line">        d.add(b);</span><br><span class="line"> </span><br><span class="line">        d.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="step3-模态JDialog"><a href="#step3-模态JDialog" class="headerlink" title="step3. 模态JDialog"></a>step3. 模态JDialog</h5><p>当一个对话框被设置为模态时，其背后的父窗体是不能被激活的，除非该对话框被关闭</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JDialog;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"外部窗体"</span>);</span><br><span class="line">        f.setSize(<span class="number">800</span>, <span class="number">600</span>);</span><br><span class="line">        f.setLocation(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 根据外部窗体实例化JDialog</span></span><br><span class="line">        JDialog d = <span class="keyword">new</span> JDialog(f);</span><br><span class="line">        <span class="comment">// 设置为模态</span></span><br><span class="line">        d.setModal(<span class="keyword">true</span>);</span><br><span class="line"> </span><br><span class="line">        d.setTitle(<span class="string">"模态的对话框"</span>);</span><br><span class="line">        d.setSize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line">        d.setLocation(<span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line">        d.setLayout(<span class="keyword">null</span>);</span><br><span class="line">        JButton b = <span class="keyword">new</span> JButton(<span class="string">"一键秒对方基地挂"</span>);</span><br><span class="line">        b.setBounds(<span class="number">50</span>, <span class="number">50</span>, <span class="number">280</span>, <span class="number">30</span>);</span><br><span class="line">        d.add(b);</span><br><span class="line"> </span><br><span class="line">        f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">        d.setVisible(<span class="keyword">true</span>);</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="step4-窗体大小不可变化"><a href="#step4-窗体大小不可变化" class="headerlink" title="step4. 窗体大小不可变化"></a>step4. 窗体大小不可变化</h5><p>通过调用方法 setResizable(false); 做到窗体大小不可变化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">        JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"LoL"</span>);</span><br><span class="line">        f.setSize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line">        f.setLocation(<span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line">        f.setLayout(<span class="keyword">null</span>);</span><br><span class="line">        JButton b = <span class="keyword">new</span> JButton(<span class="string">"一键秒对方基地挂"</span>);</span><br><span class="line">        b.setBounds(<span class="number">50</span>, <span class="number">50</span>, <span class="number">280</span>, <span class="number">30</span>);</span><br><span class="line"> </span><br><span class="line">        f.add(b);</span><br><span class="line">        <span class="comment">// 窗体大小不可变化</span></span><br><span class="line">        f.setResizable(<span class="keyword">false</span>);</span><br><span class="line">        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line"> </span><br><span class="line">        f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="step5-练习-模态与大小变化"><a href="#step5-练习-模态与大小变化" class="headerlink" title="step5. 练习-模态与大小变化"></a>step5. 练习-模态与大小变化</h5><p>首先设计一个JFrame,上面有一个按钮，文字是 “打开一个模态窗口”。</p>
+<p>点击该按钮后，随即打开一个模态窗口。</p>
+<p>在这个模态窗口中有一个按钮，文本是 “锁定大小”, 点击后，这个模态窗口的大小就被锁定住，不能改变。 再次点击，就能够改变大小。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionListener;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JDialog;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    	JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"Test"</span>);</span><br><span class="line">    	f.setSize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line">    	f.setLocation(<span class="number">400</span>, <span class="number">400</span>);</span><br><span class="line">    	f.setLayout(<span class="keyword">null</span>);</span><br><span class="line">    	</span><br><span class="line">    	JButton b = <span class="keyword">new</span> JButton(<span class="string">"打开一个模态窗口"</span>);</span><br><span class="line">    	b.setBounds(<span class="number">50</span>, <span class="number">50</span>, <span class="number">280</span>, <span class="number">30</span>);</span><br><span class="line">    	b.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">			</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">				</span><br><span class="line">				JDialog d = <span class="keyword">new</span> JDialog(f);</span><br><span class="line">				d.setTitle(<span class="string">"这是一个模态窗口"</span>);</span><br><span class="line">				d.setModal(<span class="keyword">true</span>);</span><br><span class="line">				d.setSize(<span class="number">200</span>, <span class="number">150</span>);</span><br><span class="line">				d.setLocationRelativeTo(f);</span><br><span class="line">				 </span><br><span class="line">				JButton b = <span class="keyword">new</span> JButton(<span class="string">"锁定大小"</span>);</span><br><span class="line">				d.add(b);</span><br><span class="line">				b.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">					</span><br><span class="line">					<span class="keyword">boolean</span> resizable = <span class="keyword">true</span>;</span><br><span class="line">					 </span><br><span class="line">					<span class="meta">@Override</span></span><br><span class="line">					<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">						resizable = !resizable;</span><br><span class="line">						d.setResizable(resizable);</span><br><span class="line">						b.setText(resizable?<span class="string">"锁定大小"</span>:<span class="string">"解锁大小"</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;);</span><br><span class="line">				</span><br><span class="line">				d.setVisible(<span class="keyword">true</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">    	</span><br><span class="line">    	f.add(b);</span><br><span class="line">    	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">    	f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="布局器"><a href="#布局器" class="headerlink" title="布局器"></a>布局器</h4><p>略</p>
+<h5 id="计算器上的按钮"><a href="#计算器上的按钮" class="headerlink" title="计算器上的按钮"></a>计算器上的按钮</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> gui;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.awt.GridLayout;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JPanel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    	JFrame f = <span class="keyword">new</span> JFrame(<span class="string">"计算器"</span>);</span><br><span class="line">    	<span class="keyword">int</span> gap = <span class="number">8</span>;</span><br><span class="line">    	f.setSize(<span class="number">322</span>, <span class="number">281</span>);</span><br><span class="line">    	f.setLocation(<span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line">    	f.setLayout(<span class="keyword">null</span>);</span><br><span class="line">    	</span><br><span class="line">    	JPanel middlePanel = <span class="keyword">new</span> JPanel();</span><br><span class="line">    	<span class="comment">// 前两个参数是左间距和上间距</span></span><br><span class="line">    	middlePanel.setBounds(gap, gap, <span class="number">300</span>, <span class="number">225</span>);</span><br><span class="line">    	f.add(middlePanel);</span><br><span class="line">    	<span class="comment">//前两个参数是网格格式后两个参数是网格之间上下左右的间隙</span></span><br><span class="line">    	middlePanel.setLayout(<span class="keyword">new</span> GridLayout(<span class="number">4</span>, <span class="number">5</span>, gap, gap));</span><br><span class="line">    	</span><br><span class="line">    	String[] buttoms = &#123;</span><br><span class="line">    		<span class="string">"7"</span>, <span class="string">"8"</span>, <span class="string">"9"</span>, <span class="string">"/"</span>, <span class="string">"sq"</span>,</span><br><span class="line">    		<span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"6"</span>, <span class="string">"*"</span>, <span class="string">"%"</span>,</span><br><span class="line">    		<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"-"</span>, <span class="string">"1/x"</span>,</span><br><span class="line">    		<span class="string">"0"</span>, <span class="string">"+/-"</span>, <span class="string">"."</span>, <span class="string">"+"</span>, <span class="string">"="</span></span><br><span class="line">    	&#125;;</span><br><span class="line">    	</span><br><span class="line">    	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; buttoms.length; i++) &#123;</span><br><span class="line">    		JButton b = <span class="keyword">new</span> JButton(buttoms[i]);</span><br><span class="line">    		middlePanel.add(b);</span><br><span class="line">    		System.out.println(b.getHeight());</span><br><span class="line">    		System.out.println(b.getWidth());</span><br><span class="line">    	&#125;</span><br><span class="line">    	</span><br><span class="line">    	f.setResizable(<span class="keyword">false</span>);</span><br><span class="line">    	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">    	f.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4>
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head_icon.jpg"
+                alt="H4mster" />
+            
+              <p class="site-author-name" itemprop="name">H4mster</p>
+              <p class="site-description motion-element" itemprop="description">H4mster</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/h4mster" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:h4mster@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://southseast.cc/" title="Southseast" target="_blank">Southseast</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://anonym1ty.cn/" title="豆浆油条" target="_blank">豆浆油条</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ju5tw4nty0u.top/" title="ju5tw4nty0u" target="_blank">ju5tw4nty0u</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://musicer.top/" title="Musicer" target="_blank">Musicer</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://white.xmutsec.com/" title="White" target="_blank">White</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://alienworm.top/" title="Alienworm" target="_blank">Alienworm</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://kezh.top/" title="kezh" target="_blank">kezh</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI"><span class="nav-number">1.</span> <span class="nav-text">GUI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hello-Swing"><span class="nav-number">1.1.</span> <span class="nav-text">Hello Swing</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#step1-简单的例子"><span class="nav-number">1.1.1.</span> <span class="nav-text">step1. 简单的例子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step2-在上次关闭的位置启动窗口"><span class="nav-number">1.1.2.</span> <span class="nav-text">step2. 在上次关闭的位置启动窗口</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间监听"><span class="nav-number">1.2.</span> <span class="nav-text">时间监听</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#step1-按钮监听"><span class="nav-number">1.2.1.</span> <span class="nav-text">step1. 按钮监听</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step2-键盘监听"><span class="nav-number">1.2.2.</span> <span class="nav-text">step2. 键盘监听</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step3-鼠标监听"><span class="nav-number">1.2.3.</span> <span class="nav-text">step3. 鼠标监听</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step4-适配器"><span class="nav-number">1.2.4.</span> <span class="nav-text">step4. 适配器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器"><span class="nav-number">1.3.</span> <span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#step1-JFrame"><span class="nav-number">1.3.1.</span> <span class="nav-text">step1. JFrame</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step2-JDialog"><span class="nav-number">1.3.2.</span> <span class="nav-text">step2. JDialog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step3-模态JDialog"><span class="nav-number">1.3.3.</span> <span class="nav-text">step3. 模态JDialog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step4-窗体大小不可变化"><span class="nav-number">1.3.4.</span> <span class="nav-text">step4. 窗体大小不可变化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step5-练习-模态与大小变化"><span class="nav-number">1.3.5.</span> <span class="nav-text">step5. 练习-模态与大小变化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布局器"><span class="nav-number">1.4.</span> <span class="nav-text">布局器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#计算器上的按钮"><span class="nav-number">1.4.1.</span> <span class="nav-text">计算器上的按钮</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件"><span class="nav-number">1.5.</span> <span class="nav-text">组件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">H4mster</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">27.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=h4mster"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("PgPtMMlotOFQNqNaaMdMmFoT-gzGzoHsz", "QB7PSiumy3tPjBTj8zsJ5KVl");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
